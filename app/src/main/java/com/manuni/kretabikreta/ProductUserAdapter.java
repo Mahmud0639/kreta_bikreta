@@ -59,6 +59,7 @@ public class ProductUserAdapter extends RecyclerView.Adapter<ProductUserAdapter.
         String timestamp = data.getTimestamp();
         String productIcon = data.getProductIcon();
         String productAvailable = data.getProductAvailable();
+        String proBrand = data.getProductBrand();
 
 
         try {
@@ -134,6 +135,7 @@ public class ProductUserAdapter extends RecyclerView.Adapter<ProductUserAdapter.
             intent.putExtra("discountNote",discountNote);
             intent.putExtra("productDes",productDescription);
             intent.putExtra("productQuantity",productQuantity);
+            intent.putExtra("productBrand",proBrand);
             try {
                 context.startActivity(intent);
             } catch (Exception e) {

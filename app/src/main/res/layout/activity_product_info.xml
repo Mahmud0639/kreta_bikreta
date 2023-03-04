@@ -69,12 +69,9 @@
                 android:layout_height="match_parent">
 
 
-
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    >
-
+                    android:layout_height="match_parent">
 
 
                     <com.github.chrisbanes.photoview.PhotoView
@@ -82,89 +79,122 @@
                         android:layout_width="0dp"
                         android:layout_height="@dimen/_300mdp"
                         android:layout_marginTop="@dimen/_10mdp"
-                        android:src="@drawable/chinigura_polao"
                         android:scaleType="fitCenter"
+                        android:src="@drawable/impl2"
                         app:layout_constraintBottom_toTopOf="@+id/productName"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.5"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        />
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <View
                         android:id="@+id/separateLine"
                         android:layout_width="0dp"
                         android:layout_height="@dimen/_1mdp"
                         android:background="#919090"
-                        app:layout_constraintTop_toBottomOf="@id/productIV"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"/>
-
+                        app:layout_constraintTop_toBottomOf="@id/productIV" />
 
 
                     <TextView
                         android:id="@+id/productName"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10mdp"
                         android:ellipsize="end"
                         android:gravity="center_horizontal"
                         android:maxLines="1"
                         android:paddingStart="@dimen/_5mdp"
                         android:paddingEnd="@dimen/_5mdp"
-                        android:text="Product: Chinigura"
+                        android:text="@string/fetching"
                         android:textColor="@color/colorGray02"
                         android:textSize="@dimen/_13font_mdp"
                         android:textStyle="bold"
-                        android:layout_marginTop="@dimen/_10mdp"
                         app:layout_constraintBottom_toTopOf="@+id/pDiscount"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.5"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/separateLine" />
 
+                    <LinearLayout
+                        android:id="@+id/brandLL"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toBottomOf="@id/productName"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:weightSum="2">
+
+                        <TextView
+                            android:id="@+id/proBrandTxt"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Brand: "
+                            android:layout_weight="1"
+                            android:gravity="end"
+                            android:textColor="#919090"
+                            android:textSize="@dimen/_14font_mdp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/proBrandName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/fetching"
+                            android:textStyle="bold"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_13font_mdp"
+                           />
+
+
+                    </LinearLayout>
+
+
+
                     <TextView
                         android:id="@+id/pDiscount"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_5mdp"
                         android:layout_marginTop="@dimen/_5mdp"
                         android:gravity="start"
-                        android:text="৳140"
+                        android:paddingStart="@dimen/_5mdp"
+                        android:text="@string/fetching"
+                        android:textColor="@color/blue"
                         android:textStyle="bold"
                         android:visibility="visible"
-                        android:paddingStart="@dimen/_5mdp"
-                        android:layout_marginStart="@dimen/_5mdp"
-                        android:textColor="@color/blue"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/productName" />
+                        app:layout_constraintTop_toBottomOf="@+id/brandLL" />
 
                     <TextView
                         android:id="@+id/textView"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_5mdp"
+                        android:layout_marginTop="@dimen/_5mdp"
                         android:gravity="start"
-                        android:text="৳148"
+                        android:paddingStart="@dimen/_5mdp"
+                        android:text="@string/fetching"
                         android:textColor="#F44336"
                         android:textStyle="bold"
-                        android:layout_marginTop="@dimen/_5mdp"
-                        android:layout_marginStart="@dimen/_5mdp"
-                        android:paddingStart="@dimen/_5mdp"
-                        app:layout_constraintTop_toBottomOf="@id/pDiscount"
                         app:layout_constraintStart_toStartOf="parent"
-                       />
+                        app:layout_constraintTop_toBottomOf="@id/pDiscount" />
 
                     <TextView
                         android:id="@+id/quantity"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="240 gm"
-                        app:layout_constraintTop_toBottomOf="@id/textView"
-                        app:layout_constraintStart_toStartOf="parent"
                         android:layout_marginStart="@dimen/_5mdp"
-                        android:paddingStart="@dimen/_5mdp"
-                        android:textStyle="bold"
-                        android:textSize="@dimen/_15font_mdp"
                         android:layout_marginTop="@dimen/_5mdp"
-                        android:textColor="@color/colorGray02"/>
+                        android:paddingStart="@dimen/_5mdp"
+                        android:text="@string/fetching"
+                        android:textColor="@color/colorGray02"
+                        android:textSize="@dimen/_15font_mdp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/textView" />
 
 
                     <TextView
@@ -174,12 +204,12 @@
                         android:layout_marginStart="@dimen/_5mdp"
                         android:layout_marginTop="@dimen/_5mdp"
                         android:layout_marginEnd="@dimen/_5mdp"
-                        android:text="This is Chinigura Chal. This is very energetic and authentic product.You can buy it without any thinking.This is Chinigura Chal. This is very energeticing."
-                        android:textColor="#393636"
                         android:paddingStart="@dimen/_5mdp"
-                        android:paddingEnd="@dimen/_5mdp"
                         android:paddingTop="@dimen/_5mdp"
+                        android:paddingEnd="@dimen/_5mdp"
                         android:paddingBottom="@dimen/_10mdp"
+                        android:text="@string/fetching"
+                        android:textColor="#393636"
                         android:textSize="@dimen/_13font_mdp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.5"
@@ -205,9 +235,9 @@
                             android:layout_width="@dimen/_70mdp"
                             android:layout_height="@dimen/_30mdp"
                             android:background="@drawable/shape_rect05"
-                            android:padding="@dimen/_5mdp"
-                            android:text="5% OFF"
                             android:gravity="center"
+                            android:padding="@dimen/_5mdp"
+                            android:text="@string/fetching"
                             android:textColor="@color/colorGreen"
                             app:layout_constraintTop_toBottomOf="@id/productIV"
 
@@ -215,9 +245,6 @@
 
 
                     </LinearLayout>
-
-
-
 
 
                 </androidx.constraintlayout.widget.ConstraintLayout>

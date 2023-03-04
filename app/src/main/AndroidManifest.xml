@@ -79,6 +79,7 @@
             android:exported="false" />
         <activity
             android:name=".MainUserActivity"
+            android:windowSoftInputMode="stateHidden"
             android:configChanges="orientation|screenSize|keyboardHidden|keyboard"
             android:exported="false" />
         <activity
@@ -91,6 +92,7 @@
             android:exported="false" />
         <activity
             android:name=".MainSellerActivity"
+            android:windowSoftInputMode="stateHidden"
             android:configChanges="orientation|screenSize|keyboardHidden|keyboard"
             android:exported="false" />
         <activity

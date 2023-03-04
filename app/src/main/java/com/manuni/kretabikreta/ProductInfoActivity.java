@@ -12,7 +12,7 @@ import com.squareup.picasso.Picasso;
 
 public class ProductInfoActivity extends AppCompatActivity {
     ActivityProductInfoBinding binding;
-    private String productIcon,originalPrice,discountPrice,discountNote,productTitle,productDescription,productQuantity;
+    private String productIcon,originalPrice,discountPrice,discountNote,productTitle,productDescription,productQuantity,productBrand;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -29,6 +29,7 @@ public class ProductInfoActivity extends AppCompatActivity {
             productTitle = getIntent().getStringExtra("productTitle");
             productDescription = getIntent().getStringExtra("productDes");
             productQuantity = getIntent().getStringExtra("productQuantity");
+            productBrand = getIntent().getStringExtra("productBrand");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -59,6 +60,7 @@ public class ProductInfoActivity extends AppCompatActivity {
             binding.textView.setText("৳"+originalPrice);
             binding.descriptionTV.setText(productDescription);
             binding.quantity.setText(productQuantity);
+            binding.proBrandName.setText(productBrand);
         } catch (Exception e) {
             e.printStackTrace();
         }
