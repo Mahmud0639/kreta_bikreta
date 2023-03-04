@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/_5mdp"
+    android:background="#70EDE8E8">
+
+    <ImageView
+        android:id="@+id/productImage"
+        android:layout_width="@dimen/_30mdp"
+        android:layout_height="@dimen/_30mdp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/impl1" />
+
+    <TextView
+        android:id="@+id/itemTitleTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_3mdp"
+        android:layout_toEndOf="@id/productImage"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:maxWidth="@dimen/_80mdp"
+        android:text="CCA CSA One Plus Earphone"
+        android:textColor="@color/black" />
+
+    <TextView
+        android:id="@+id/productTotalDesc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#919090"
+        android:layout_toEndOf="@id/itemTitleTV"
+        android:text="" />
+
+    <TextView
+        android:id="@+id/itemPriceTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/itemTitleTV"
+        android:layout_marginStart="@dimen/_3mdp"
+        android:layout_toEndOf="@id/productImage"
+        android:gravity="center"
+        android:text="@string/_0"
+        android:textColor="@color/black" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/itemTitleTV"
+        android:layout_marginStart="@dimen/_5mdp"
+       android:layout_toEndOf="@id/itemPriceTV">
+
+        <TextView
+            android:id="@+id/itemPriceEachTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/_10_kg"
+            android:textColor="@color/black"/>
+
+        <TextView
+            android:id="@+id/itemQuantityTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginStart="@dimen/_4mdp"
+            android:text="@string/_2"
+            android:textColor="@color/black"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/removeTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/remove"
+        android:layout_below="@id/itemTitleTV"
+        android:layout_alignParentEnd="true"
+        android:textColor="#A9FF2222"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_1mdp"
+        android:layout_below="@id/removeTV"
+        android:layout_marginTop="@dimen/_4mdp"
+        android:background="@color/colorGreen" />
+
+</RelativeLayout>

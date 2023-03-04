@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginBottom="@dimen/_2mdp"
+    app:cardBackgroundColor="@color/white"
+    app:cardElevation="@dimen/_3mdp"
+    app:contentPadding="@dimen/_5mdp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/orderIdTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/order_id_39393934"
+            android:textColor="@color/black"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/dateTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:textColor="#919090"
+            android:text="@string/_02_11_2023" />
+
+        <TextView
+            android:id="@+id/emailTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/orderIdTV"
+            android:textColor="#919090"
+            android:text="@string/email_mahmud_gmail_com" />
+
+        <TextView
+            android:id="@+id/orderAmountTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/emailTV"
+            android:textColor="#919090"
+            android:text="@string/total_amount_66_04" />
+
+        <TextView
+            android:id="@+id/statusTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/emailTV"
+            android:layout_alignParentEnd="true"
+            android:text="@string/in_progress"
+            android:textColor="@color/background_theme" />
+
+
+        <ImageButton
+            android:id="@+id/nextBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_next_gray" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_1mdp"
+            android:background="#D4EBFD"
+            android:layout_below="@id/statusTV"
+            android:layout_marginTop="@dimen/_4mdp"/>
+
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

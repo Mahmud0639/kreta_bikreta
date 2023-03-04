@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "863298559569",
+    "project_id": "kretabikreta-cb6aa",
+    "storage_bucket": "kretabikreta-cb6aa.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:863298559569:android:88976f3c3f90eab1d4e270",
+        "android_client_info": {
+          "package_name": "com.manuni.kretabikreta"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "863298559569-3cjhco1q3ksalc0sbbls2hfn808gcn65.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDASZ40-FDrq9Vp5UMLkIfDrSbfz1fhkv0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "863298559569-3cjhco1q3ksalc0sbbls2hfn808gcn65.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
