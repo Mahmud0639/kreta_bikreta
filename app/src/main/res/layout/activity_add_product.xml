@@ -179,7 +179,7 @@
                     android:background="@drawable/shape_rect_02"
                     android:drawableStart="@drawable/ic_cart_gray"
                     android:drawablePadding="@dimen/_10mdp"
-                    android:hint="@string/price"
+                    android:hint="আসল দাম"
                     android:inputType="numberDecimal"
                     android:padding="@dimen/_8mdp"
                     android:textColor="@color/black"
@@ -227,11 +227,11 @@
                     android:background="@drawable/shape_rect_02"
                     android:drawableStart="@drawable/ic_cart_gray"
                     android:drawablePadding="@dimen/_10mdp"
-                    android:textColor="@color/black"
-                    android:textColorHint="#919090"
-                    android:hint="@string/discount_note_e_g_10_off"
+                    android:hint="ডিসকাউন্ট দাম সেট করুন"
                     android:inputType="numberDecimal"
-                    android:padding="@dimen/_8mdp" />
+                    android:padding="@dimen/_8mdp"
+                    android:textColor="@color/black"
+                    android:textColorHint="#919090" />
 
                 <Button
                     android:id="@+id/addProductBtn"

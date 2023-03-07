@@ -102,6 +102,8 @@ public class AddProductActivity extends AppCompatActivity {
     private String productTitle,productDescription,productCategory,productQuantity,originalPrice,discountPrice,discountNote,productBrand;
     private  boolean discountAvailable = false;
     private double discountNoteSum=0.0;
+    private double subtractPrice,myDiscountNotePercent;
+    private  int percentNote;
 
     private void inputData(){
         productTitle = binding.titleET.getText().toString().trim();
@@ -146,12 +148,25 @@ public class AddProductActivity extends AppCompatActivity {
             /*double disNote = 0;
             double oriPrice = 0;*/
             try {
+
+
                 double disNote   = Double.parseDouble(discountNote);
                 double oriPrice = Double.parseDouble(originalPrice);
 
-                double afterDiscount = disNote * oriPrice/100;
+                if (oriPrice>disNote){
+                    subtractPrice = oriPrice - disNote;
+                }else {
+                    Toast.makeText(this, "Invalid price placement.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                myDiscountNotePercent = (100*subtractPrice)/oriPrice;
+
+                double afterDiscount = myDiscountNotePercent * oriPrice/100;
 
                 discountNoteSum = oriPrice - afterDiscount;
+
+                 percentNote = (int) myDiscountNotePercent;
 
 
 
@@ -171,7 +186,7 @@ public class AddProductActivity extends AppCompatActivity {
 //                return;
 //            }
             if (TextUtils.isEmpty(discountNote)){
-                Toast.makeText(this, "Discount Note required!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Discount price required!", Toast.LENGTH_SHORT).show();
                 return;
             }
 
@@ -205,7 +220,7 @@ public class AddProductActivity extends AppCompatActivity {
             hashMap.put("productIcon","");
             hashMap.put("productOriginalPrice",""+originalPrice);
             hashMap.put("productDiscountPrice",""+discountNoteSum);
-            hashMap.put("productDiscountNote",""+discountNote);
+            hashMap.put("productDiscountNote",""+percentNote);
             hashMap.put("productDiscountAvailable",""+discountAvailable);
             hashMap.put("timestamp",""+timestamp);
             hashMap.put("uid",""+auth.getUid());
@@ -241,7 +256,7 @@ public class AddProductActivity extends AppCompatActivity {
                     hashMap.put("productIcon",""+downloadUri);
                     hashMap.put("productOriginalPrice",""+originalPrice);
                     hashMap.put("productDiscountPrice",""+discountNoteSum);
-                    hashMap.put("productDiscountNote",""+discountNote);
+                    hashMap.put("productDiscountNote",""+percentNote);
                     hashMap.put("productDiscountAvailable",""+discountAvailable);
                     hashMap.put("timestamp",""+timestamp);
                     hashMap.put("uid",""+auth.getUid());

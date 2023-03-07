@@ -130,6 +130,7 @@ public class EditProductActivity extends AppCompatActivity {
                 String timestamp = "" + snapshot.child("timestamp").getValue();
                 String uid = "" + snapshot.child("uid").getValue();
                 String productAvailability = ""+snapshot.child("productAvailable").getValue();
+                String brandName = ""+snapshot.child("productBrand").getValue();
 
 
                 if (productDiscountAvailable.equals("true")) {
@@ -168,10 +169,11 @@ public class EditProductActivity extends AppCompatActivity {
                 binding.titleET.setText(productTitle);
                 binding.descriptionET.setText(productDesc);
                 // binding.discountPriceET.setText(productDiscountPrice);
-                binding.discountNoteET.setText(productDiscountNote);
+                binding.discountNoteET.setText(productDiscountPrice);
                 binding.categoryTV.setText(productCategory);
                 binding.priceET.setText(productOriginalPrice);
                 binding.quantityET.setText(productQuantity);
+                binding.brandET.setText(brandName);
 
 
 
@@ -192,11 +194,14 @@ public class EditProductActivity extends AppCompatActivity {
 
     }
 
-    private String productTitle, productDescription, productCategory, productQuantity, originalPrice, discountPrice, discountNote;
+    private String productTitle, productDescription, productCategory, productQuantity, originalPrice, discountPrice, discountNote,productBrandName;
     private boolean discountAvailable = false;
     private double discountNoteSum=0.0;
     private boolean productAvailable = false;
     private String productAvailableSwitch;
+
+    private double subtractPrice,myDiscountNotePercent;
+    private  int percentNote;
 
     private void inputData() {
         productTitle = binding.titleET.getText().toString().trim();
@@ -204,6 +209,8 @@ public class EditProductActivity extends AppCompatActivity {
         productCategory = binding.categoryTV.getText().toString().trim();
         productQuantity = binding.quantityET.getText().toString().trim();
         originalPrice = binding.priceET.getText().toString().trim();
+        productBrandName = binding.brandET.getText().toString().trim();
+
 
         discountAvailable = binding.discountSwitch.isChecked();//true or false...jodi check thake tahole discountAvailable false theke true te update hoye jabe
 
@@ -227,27 +234,79 @@ public class EditProductActivity extends AppCompatActivity {
             }
 
             if (TextUtils.isEmpty(discountNote)) {
-                Toast.makeText(this, "Discount Note required!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Discount price required!", Toast.LENGTH_SHORT).show();
                 return;
             }
-            else if (myDiscountNote==0 || myDiscountNote<0 || myDiscountNote >100){
-                Toast.makeText(this, "Invalid Discount", Toast.LENGTH_SHORT).show();
+            else if (myDiscountNote==0 || myDiscountNote<0){
+                Toast.makeText(this, "Invalid Discount Price", Toast.LENGTH_SHORT).show();
                 return;
             }
 //
             else{
-                double disNote = 0;
-                double oriPrice = 0;
+               /* double disNote = 0;
+                double oriPrice = 0;*/
+
+
+                try {
+
+
+                    double disNote   = Double.parseDouble(discountNote);
+                    double oriPrice = Double.parseDouble(originalPrice);
+
+                    if (oriPrice>disNote){
+                        subtractPrice = oriPrice - disNote;
+                    }else {
+                        Toast.makeText(this, "Invalid update price.", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+
+                    myDiscountNotePercent = (100*subtractPrice)/oriPrice;
+
+                    double afterDiscount = myDiscountNotePercent * oriPrice/100;
+
+                    discountNoteSum = oriPrice - afterDiscount;
+
+                    percentNote = (int) myDiscountNotePercent;
+
+
+
+
+
+
+                } catch (NumberFormatException e) {
+                    e.printStackTrace();
+                }
+
+
+
+
+
+
+/*
+
                 try {
                     disNote = Double.parseDouble(discountNote);
                     oriPrice = Double.parseDouble(originalPrice);
                 } catch (NumberFormatException e) {
                     e.printStackTrace();
                 }
+                subtractPrice = disNote - oriPrice;
+              */
+/*  double afterDiscount = disNote * oriPrice/100;
 
-                double afterDiscount = disNote * oriPrice/100;
+                discountNoteSum = oriPrice - afterDiscount;*//*
+
+
+                myDiscountNotePercent = (100*subtractPrice)/oriPrice;
+
+                double afterDiscount = myDiscountNotePercent * oriPrice/100;
 
                 discountNoteSum = oriPrice - afterDiscount;
+
+                percentNote = (int) myDiscountNotePercent;
+*/
+
+
             }
 
 
@@ -293,7 +352,10 @@ public class EditProductActivity extends AppCompatActivity {
         } else if (TextUtils.isEmpty(originalPrice)) {
             Toast.makeText(this, "Original Price required!", Toast.LENGTH_SHORT).show();
             return;
-        }  else {
+        }else if (TextUtils.isEmpty(productBrandName)){
+            Toast.makeText(this, "Brand name required!", Toast.LENGTH_SHORT).show();
+            return;
+        }  else{
             updateProductToDb();
         }
 
@@ -313,13 +375,14 @@ public class EditProductActivity extends AppCompatActivity {
             hashMap.put("productQuantity", "" + productQuantity);
             hashMap.put("productOriginalPrice", "" + originalPrice);
             hashMap.put("productDiscountPrice", "" + discountNoteSum);
-            hashMap.put("productDiscountNote",""+discountNote);
+            hashMap.put("productDiscountNote",""+percentNote);
             hashMap.put("productDiscountAvailable", "" + discountAvailable);
             hashMap.put("timestamp",""+productId);
             hashMap.put("uid",""+auth.getUid());
             hashMap.put("productIcon",""+productIcon);
             hashMap.put("productId",""+productId);
             hashMap.put("productAvailable",""+productAvailableSwitch);
+            hashMap.put("productBrand",""+productBrandName);
 
 
             //update to database
@@ -349,12 +412,13 @@ public class EditProductActivity extends AppCompatActivity {
                     hashMap.put("productOriginalPrice", "" + originalPrice);
                     hashMap.put("productDiscountPrice", "" + discountNoteSum);
                     hashMap.put("productIcon", "" + downloadUri);
-                    hashMap.put("productDiscountNote",""+discountNote);
+                    hashMap.put("productDiscountNote",""+percentNote);
                     hashMap.put("productDiscountAvailable", "" + discountAvailable);
                     hashMap.put("timestamp",""+productId);
                     hashMap.put("uid",""+auth.getUid());
                     hashMap.put("productId",""+productId);
                     hashMap.put("productAvailable",""+productAvailableSwitch);
+                    hashMap.put("productBrand",""+productBrandName);
 
                     DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Users");
                     reference.child(Objects.requireNonNull(auth.getUid())).child("Products").child(productId).setValue(hashMap).addOnSuccessListener(unused -> {

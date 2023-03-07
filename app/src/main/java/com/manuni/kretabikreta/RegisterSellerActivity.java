@@ -1,9 +1,5 @@
 package com.manuni.kretabikreta;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
@@ -25,6 +21,10 @@ import android.text.TextWatcher;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import com.github.dhaval2404.imagepicker.ImagePicker;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -61,7 +61,6 @@ public class RegisterSellerActivity extends AppCompatActivity implements Locatio
 
 
     private static final int LOCATION_REQUEST_CODE = 100;
-
 
 
     private String[] location_permissions;
@@ -140,13 +139,13 @@ public class RegisterSellerActivity extends AppCompatActivity implements Locatio
                 Matcher matcher = pattern.matcher(charSequence);
                 boolean isNameContains = matcher.find();*/
 
-                if (charSequence.length()<=3){
+                if (charSequence.length() <= 3) {
                     binding.textInputFullName.setError("Name is too small.");
 
-                }else if (charSequence.length()>=20){
+                } else if (charSequence.length() >= 20) {
                     binding.textInputFullName.setError("Name is too long. Put under 20 char.");
 
-                } else{
+                } else {
                     binding.textInputFullName.setError(null);
                     binding.textInputFullName.setHelperText("Valid Name.");
                     binding.textInputFullName.setHelperTextColor(ColorStateList.valueOf(getResources().getColor(R.color.colorGreen)));
@@ -169,13 +168,13 @@ public class RegisterSellerActivity extends AppCompatActivity implements Locatio
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
-                if (charSequence.length()<=3){
+                if (charSequence.length() <= 3) {
                     binding.textInputShopName.setError("Shop name is too small.");
 
-                }else if (charSequence.length()>=20){
+                } else if (charSequence.length() >= 20) {
                     binding.textInputShopName.setError("Shop name is too long.");
 
-                }else {
+                } else {
                     binding.textInputShopName.setError(null);
                     binding.textInputShopName.setHelperText("Valid shop name.");
                     binding.textInputShopName.setHelperTextColor(ColorStateList.valueOf(getResources().getColor(R.color.colorGreen)));
@@ -197,7 +196,7 @@ public class RegisterSellerActivity extends AppCompatActivity implements Locatio
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                if (!Patterns.EMAIL_ADDRESS.matcher(charSequence).matches()){
+                if (!Patterns.EMAIL_ADDRESS.matcher(charSequence).matches()) {
                     binding.textInputEmail.setError("Invalid Email Pattern.");
 
                 } else {
@@ -223,21 +222,21 @@ public class RegisterSellerActivity extends AppCompatActivity implements Locatio
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                if (charSequence.length()>=6){
+                if (charSequence.length() >= 6) {
                     Pattern pattern = Pattern.compile("[^a-zA-Z0-9]");
                     Matcher matcher = pattern.matcher(charSequence);
                     boolean isPwdContains = matcher.find();
-                    if (isPwdContains){
+                    if (isPwdContains) {
                         binding.textInputPass.setHelperText("Strong Password");
                         binding.textInputPass.setHelperTextColor(ColorStateList.valueOf(getResources().getColor(R.color.colorGreen)));
                         binding.textInputPass.setError("");
 
-                    }else {
+                    } else {
                         binding.textInputPass.setHelperText("Weak Password.Include minimum 1 special char.");
                         binding.textInputPass.setHelperTextColor(ColorStateList.valueOf(getResources().getColor(R.color.blue)));
 
                     }
-                } else{
+                } else {
                     binding.textInputPass.setHelperText("Enter Minimum 6 char.");
                     binding.textInputPass.setHelperTextColor(ColorStateList.valueOf(getResources().getColor(R.color.red_deep)));
                     binding.textInputPass.setError("");
@@ -259,21 +258,21 @@ public class RegisterSellerActivity extends AppCompatActivity implements Locatio
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                if (charSequence.length()>=6){
+                if (charSequence.length() >= 6) {
                     Pattern pattern = Pattern.compile("[^a-zA-Z0-9]");
                     Matcher matcher = pattern.matcher(charSequence);
                     boolean isPwdContains = matcher.find();
-                    if (isPwdContains){
+                    if (isPwdContains) {
                         binding.textInputConfirmPass.setHelperText("Strong Password");
                         binding.textInputConfirmPass.setHelperTextColor(ColorStateList.valueOf(getResources().getColor(R.color.colorGreen)));
                         binding.textInputConfirmPass.setError("");
 
-                    }else {
+                    } else {
                         binding.textInputConfirmPass.setHelperText("Weak Password.Include minimum 1 special char.");
                         binding.textInputConfirmPass.setHelperTextColor(ColorStateList.valueOf(getResources().getColor(R.color.blue)));
 
                     }
-                } else{
+                } else {
                     binding.textInputConfirmPass.setHelperText("Enter Minimum 6 char.");
                     binding.textInputConfirmPass.setHelperTextColor(ColorStateList.valueOf(getResources().getColor(R.color.red_deep)));
                     binding.textInputConfirmPass.setError("");
@@ -295,10 +294,10 @@ public class RegisterSellerActivity extends AppCompatActivity implements Locatio
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                if (charSequence.length() != 11){
+                if (charSequence.length() != 11) {
                     binding.textInputPhone.setError("Put 11 digit phone number.");
 
-                }else {
+                } else {
                     binding.textInputPhone.setError(null);
                     binding.textInputPhone.setHelperText("Valid phone number.");
                     binding.textInputPhone.setHelperTextColor(ColorStateList.valueOf(getResources().getColor(R.color.colorGreen)));
@@ -312,7 +311,7 @@ public class RegisterSellerActivity extends AppCompatActivity implements Locatio
             }
         });
 
-       /* binding.deliveryET.addTextChangedListener(new TextWatcher() {
+        binding.deliveryET.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
@@ -322,28 +321,31 @@ public class RegisterSellerActivity extends AppCompatActivity implements Locatio
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
 
-                try {
-                    if (charSequence.equals("")){
-                        Toast.makeText(RegisterSellerActivity.this, "Try nothing...", Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                if (!charSequence.equals("")){
-                   delivery = Double.parseDouble(charSequence.toString());
-                    if (delivery>=0 && delivery<5){
-                        binding.textInputDelivery.setError("Delivery fee is too low");
+                double myDiscountNote = 0.0;
+                if (!charSequence.equals("")) {
 
-                    }else {
+
+                    try {
+                        myDiscountNote = Double.parseDouble(charSequence.toString());
+                    } catch (NumberFormatException e) {
+                        myDiscountNote = 0.0;
+                    }
+
+                    if (myDiscountNote >= 1 && myDiscountNote < 5) {
+                        binding.textInputDelivery.setError("Delivery fee is too low.");
+
+
+                    } else if (myDiscountNote == 0.0) {
+                        binding.textInputDelivery.setError("Field can't be empty.");
+                    } else {
                         binding.textInputDelivery.setError(null);
                         binding.textInputDelivery.setHelperText("Sufficient delivery fee.");
                         binding.textInputDelivery.setHelperTextColor(ColorStateList.valueOf(getResources().getColor(R.color.colorGreen)));
 
                     }
 
-
                 }
+
 
             }
 
@@ -351,8 +353,7 @@ public class RegisterSellerActivity extends AppCompatActivity implements Locatio
             public void afterTextChanged(Editable editable) {
 
             }
-        });*/
-
+        });
 
 
         binding.personImage.setOnClickListener(new View.OnClickListener() {
@@ -385,11 +386,12 @@ public class RegisterSellerActivity extends AppCompatActivity implements Locatio
             }
         });
     }
-    private String email,password,confirmPass,fullName,shopName,deliveryFee,phoneNumber;
+
+    private String email, password, confirmPass, fullName, shopName, deliveryFee, phoneNumber;
 
     private void inputDataToDatabaseAndStorage() {
 
-        if (!validateFullName() | !validateShopName() | !validatePhone() | !validateEmail() | !validatePassword() | !validateConfirmPassword() | !validateDeliveryFee() | !validateMatchPass()){
+        if (!validateFullName() | !validateShopName() | !validatePhone() | !validateEmail() | !validatePassword() | !validateConfirmPassword() | !validateDeliveryFee() | !validateMatchPass()) {
             return;
         }
 //        if (TextUtils.isEmpty(binding.fullNameET.getText().toString().trim())) {
@@ -595,7 +597,7 @@ public class RegisterSellerActivity extends AppCompatActivity implements Locatio
                         e.printStackTrace();
                     }
                     assert status != null;
-                    if (status.equals("blocked")&& Objects.equals(shopCat, "false")) {
+                    if (status.equals("blocked") && Objects.equals(shopCat, "false")) {
 
                         try {
                             startActivity(new Intent(RegisterSellerActivity.this, ShopCategoryActivity.class));
@@ -638,7 +640,7 @@ public class RegisterSellerActivity extends AppCompatActivity implements Locatio
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode,Intent data) {
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (resultCode == RESULT_OK) {
@@ -670,7 +672,7 @@ public class RegisterSellerActivity extends AppCompatActivity implements Locatio
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode,String[] permissions,int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         switch (requestCode) {
             case LOCATION_REQUEST_CODE: {
                 if (grantResults.length > 0) {
@@ -757,15 +759,15 @@ public class RegisterSellerActivity extends AppCompatActivity implements Locatio
         Toast.makeText(this, "Please enable location service.", Toast.LENGTH_SHORT).show();
     }
 
-    private boolean validateEmail(){
+    private boolean validateEmail() {
 
 
         email = binding.emailEt.getText().toString().trim();
 
-        if (email.isEmpty()){
+        if (email.isEmpty()) {
             binding.textInputEmail.setError("Field can't be empty");
             return false;
-        }else  if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+        } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             binding.textInputEmail.setError("Invalid Email Pattern");
             return false;
         } else {
@@ -778,54 +780,56 @@ public class RegisterSellerActivity extends AppCompatActivity implements Locatio
 
 
     }
-    private boolean validatePassword(){
+
+    private boolean validatePassword() {
         password = binding.passwordET.getText().toString().trim();
-        if (password.length()>=6){
+        if (password.length() >= 6) {
             Pattern pattern = Pattern.compile("[^a-zA-Z0-9]");
             Matcher matcher = pattern.matcher(password);
             boolean isPwdContains = matcher.find();
-            if (isPwdContains){
+            if (isPwdContains) {
                 binding.textInputPass.setHelperText("Strong Password");
                 binding.textInputPass.setHelperTextColor(ColorStateList.valueOf(getResources().getColor(R.color.colorGreen)));
                 binding.textInputPass.setError("");
                 return true;
-            }else {
+            } else {
                 binding.textInputPass.setHelperText("Weak Password.Include minimum 1 special char.");
                 binding.textInputPass.setHelperTextColor(ColorStateList.valueOf(getResources().getColor(R.color.blue)));
                 return true;
             }
-        }else if (password.isEmpty()){
+        } else if (password.isEmpty()) {
             binding.textInputPass.setHelperText("Field can't be empty.");
             binding.textInputPass.setHelperTextColor(ColorStateList.valueOf(getResources().getColor(R.color.red_deep)));
             return false;
-        } else{
+        } else {
             binding.textInputPass.setHelperText("Enter Minimum 6 char.");
             binding.textInputPass.setHelperTextColor(ColorStateList.valueOf(getResources().getColor(R.color.red_deep)));
             binding.textInputPass.setError("");
             return false;
         }
     }
-    private boolean validateConfirmPassword(){
+
+    private boolean validateConfirmPassword() {
         confirmPass = binding.confirmPasswordET.getText().toString().trim();
-        if (confirmPass.length()>=6){
+        if (confirmPass.length() >= 6) {
             Pattern pattern = Pattern.compile("[^a-zA-Z0-9]");
             Matcher matcher = pattern.matcher(confirmPass);
             boolean isPwdContains = matcher.find();
-            if (isPwdContains){
+            if (isPwdContains) {
                 binding.textInputConfirmPass.setHelperText("Strong Password");
                 binding.textInputConfirmPass.setHelperTextColor(ColorStateList.valueOf(getResources().getColor(R.color.colorGreen)));
                 binding.textInputConfirmPass.setError("");
                 return true;
-            }else {
+            } else {
                 binding.textInputConfirmPass.setHelperText("Weak Password.Include minimum 1 special char.");
                 binding.textInputConfirmPass.setHelperTextColor(ColorStateList.valueOf(getResources().getColor(R.color.blue)));
                 return true;
             }
-        }else if (confirmPass.isEmpty()){
+        } else if (confirmPass.isEmpty()) {
             binding.textInputConfirmPass.setHelperText("Field can't be empty.");
             binding.textInputConfirmPass.setHelperTextColor(ColorStateList.valueOf(getResources().getColor(R.color.red_deep)));
             return false;
-        } else{
+        } else {
             binding.textInputConfirmPass.setHelperText("Enter Minimum 6 char.");
             binding.textInputConfirmPass.setHelperTextColor(ColorStateList.valueOf(getResources().getColor(R.color.red_deep)));
             binding.textInputConfirmPass.setError("");
@@ -833,30 +837,31 @@ public class RegisterSellerActivity extends AppCompatActivity implements Locatio
         }
     }
 
-    private boolean validateFullName(){
+    private boolean validateFullName() {
         fullName = binding.fullNameET.getText().toString().trim();
 
      /*   Pattern pattern = Pattern.compile("^[A-Za-z\\s]+$");//allow only space and alphabets
         Matcher matcher = pattern.matcher(fullName);
         boolean isNameContains = matcher.find();*/
 
-        if (fullName.isEmpty()){
+        if (fullName.isEmpty()) {
             binding.textInputFullName.setError("Field can't be empty.");
             return false;
-        }else if (fullName.length()<=3){
+        } else if (fullName.length() <= 3) {
             binding.textInputFullName.setError("Name is too small.");
             return false;
-        }else if (fullName.length()>=20){
+        } else if (fullName.length() >= 20) {
             binding.textInputFullName.setError("Name is too long. Put under 20 char.");
             return false;
-        } else{
+        } else {
             binding.textInputFullName.setError(null);
             binding.textInputFullName.setHelperText("Valid name.");
             binding.textInputFullName.setHelperTextColor(ColorStateList.valueOf(getResources().getColor(R.color.colorGreen)));
             return true;
         }
     }
-    private boolean validateShopName(){
+
+    private boolean validateShopName() {
         shopName = binding.shopET.getText().toString().trim();
 
 
@@ -865,31 +870,32 @@ public class RegisterSellerActivity extends AppCompatActivity implements Locatio
 //        boolean isShopNameContains = matcher.find();
 
 
-        if (shopName.isEmpty()){
+        if (shopName.isEmpty()) {
             binding.textInputShopName.setError("Field can't be empty.");
             return false;
-        } else if (shopName.length()<=3){
+        } else if (shopName.length() <= 3) {
             binding.textInputShopName.setError("Shop name is too small.");
             return false;
-        }else if (shopName.length()>=20){
+        } else if (shopName.length() >= 20) {
             binding.textInputShopName.setError("Shop name is too long.");
             return false;
-        }else {
+        } else {
             binding.textInputShopName.setError(null);
             binding.textInputShopName.setHelperText("Valid shop name.");
             binding.textInputShopName.setHelperTextColor(ColorStateList.valueOf(getResources().getColor(R.color.colorGreen)));
             return true;
         }
     }
-    private boolean validatePhone(){
+
+    private boolean validatePhone() {
         phoneNumber = binding.phoneET.getText().toString().trim();
-        if (phoneNumber.isEmpty()){
+        if (phoneNumber.isEmpty()) {
             binding.textInputPhone.setError("Field can't be empty.");
             return false;
-        }else if (phoneNumber.length() != 11){
+        } else if (phoneNumber.length() != 11) {
             binding.textInputPhone.setError("Put 11 digit phone number.");
             return false;
-        }else {
+        } else {
             binding.textInputPhone.setError(null);
             binding.textInputPhone.setHelperText("Valid phone number.");
             binding.textInputPhone.setHelperTextColor(ColorStateList.valueOf(getResources().getColor(R.color.colorGreen)));
@@ -898,9 +904,9 @@ public class RegisterSellerActivity extends AppCompatActivity implements Locatio
     }
 
 
-    private boolean validateDeliveryFee(){
+    private boolean validateDeliveryFee() {
         deliveryFee = binding.deliveryET.getText().toString().trim();
-        if (!deliveryFee.equals("")){
+        if (!deliveryFee.equals("")) {
             try {
                 delivery = Double.parseDouble(deliveryFee);
             } catch (NumberFormatException e) {
@@ -908,33 +914,34 @@ public class RegisterSellerActivity extends AppCompatActivity implements Locatio
             }
         }
 
-        if (deliveryFee.isEmpty()){
+        if (deliveryFee.isEmpty()) {
             binding.textInputDelivery.setError("Field can't be empty.");
             return false;
-        }else if (delivery>=0 && delivery<5){
+        } else if (delivery >= 0 && delivery < 5) {
             binding.textInputDelivery.setError("Delivery fee is too low");
             return false;
-        }else {
+        } else {
             binding.textInputDelivery.setError(null);
             binding.textInputDelivery.setHelperText("Sufficient delivery fee.");
             binding.textInputDelivery.setHelperTextColor(ColorStateList.valueOf(getResources().getColor(R.color.colorGreen)));
             return true;
         }
     }
-    private boolean validateMatchPass(){
+
+    private boolean validateMatchPass() {
         password = binding.passwordET.getText().toString().trim();
         confirmPass = binding.confirmPasswordET.getText().toString().trim();
 
-        if (!password.isEmpty() && !confirmPass.isEmpty()){
-            if (!password.equals(confirmPass)){
+        if (!password.isEmpty() && !confirmPass.isEmpty()) {
+            if (!password.equals(confirmPass)) {
                 Toast.makeText(this, "Password doesn't match.", Toast.LENGTH_SHORT).show();
                 return false;
-            }else {
+            } else {
                 Toast.makeText(this, "Password matched.", Toast.LENGTH_SHORT).show();
                 return true;
             }
 
-        }else {
+        } else {
             Toast.makeText(this, "Make a password first.", Toast.LENGTH_SHORT).show();
             return false;
         }

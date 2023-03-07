@@ -92,6 +92,7 @@
                         android:layout_width="0dp"
                         android:layout_height="@dimen/_1mdp"
                         android:background="#919090"
+                        android:layout_marginTop="@dimen/_5mdp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/productIV" />
@@ -101,7 +102,7 @@
                         android:id="@+id/productName"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_10mdp"
+                        android:layout_marginTop="@dimen/_5mdp"
                         android:ellipsize="end"
                         android:gravity="center_horizontal"
                         android:maxLines="1"
