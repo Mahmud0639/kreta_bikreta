@@ -73,7 +73,7 @@
                 android:layout_height="@dimen/_85mdp"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="@dimen/_10mdp"
-                android:src="@drawable/ic_person_gray"
+                android:src="@drawable/ic_person"
                 app:civ_border_color="@color/background_theme"
                 app:civ_border_width="@dimen/_1mdp"
                 app:layout_constraintEnd_toEndOf="parent"
