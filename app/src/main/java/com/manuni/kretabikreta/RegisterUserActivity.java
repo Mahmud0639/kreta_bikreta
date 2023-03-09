@@ -181,7 +181,7 @@ public class RegisterUserActivity extends AppCompatActivity implements LocationL
                 if (charSequence.length()<=3){
                     binding.textInputFullName.setError("Name is too small.");
 
-                }else if (charSequence.length()>=20){
+                }else if (charSequence.length()>=26){
                     binding.textInputFullName.setError("Name is too long. Put under 20 char.");
 
                 } else{
@@ -370,7 +370,7 @@ public class RegisterUserActivity extends AppCompatActivity implements LocationL
     }
 
     private void saveDataInfoToDatabase() {
-        dialogForAccount.setMessage("Saving Data to Database...");
+        dialogForAccount.setMessage("Wait a while...");
 
         if (imageUri == null){
             HashMap<String,Object> hashMap = new HashMap<>();
@@ -472,112 +472,7 @@ public class RegisterUserActivity extends AppCompatActivity implements LocationL
         }
     }
 
-    //    private final ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),result -> {
-//        Intent data = result.getData();
-//        if (data != null && result.getResultCode() ==RESULT_OK) {
-//            imageUri = data.getData();
-//
-//            binding.personImage.setImageURI(imageUri);
-//        } else {
-//            Toast.makeText(this, ImagePicker.getError(data), Toast.LENGTH_SHORT).show();
-//        }
-//
-//    });
 
-
-//    private void showImagePickDialog() {
-//        String[] options = {"Camera", "Gallery"};
-//        AlertDialog.Builder builder = new AlertDialog.Builder(RegisterUserActivity.this);
-//        builder.setTitle("Pick Image")
-//                .setItems(options, new DialogInterface.OnClickListener() {
-//                    @Override
-//                    public void onClick(DialogInterface dialogInterface, int i) {
-//                        if (i == 0) {
-//                            if (checkCameraPermission()) {
-//                                pickUsingCamera();
-//                            } else {
-//                                requestCameraPermission();
-//                            }
-//
-//                        } else {
-//                            if (checkStoragePermission()) {
-//                                pickFromGallery();
-//                            } else {
-//                                requestStoragePermission();
-//                            }
-//
-//                        }
-//                    }
-//                }).show();
-//    }
-//
-//    private void pickUsingCamera() {
-//        ContentValues contentValues = new ContentValues();
-//        contentValues.put(MediaStore.Images.Media.TITLE, "Temp_image Title");
-//        contentValues.put(MediaStore.Images.Media.DESCRIPTION, "Temp_image Description");
-//
-//        imageUri = getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues);
-//
-//        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-//        intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
-//        //startActivityForResult(intent, REQUEST_FOR_CAMERA_CODE);
-//        resultLauncherForCamera.launch(intent);
-//    }
-//    private ActivityResultLauncher<Intent> resultLauncherForCamera = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
-//        @Override
-//        public void onActivityResult(ActivityResult result) {
-//            if (result.getResultCode()==RESULT_OK){
-//                try {
-//                    binding.personImage.setImageURI(imageUri);
-//                } catch (Exception e) {
-//                    e.printStackTrace();
-//                }
-//            }else {
-//                Toast.makeText(RegisterUserActivity.this, "Cancelled.", Toast.LENGTH_SHORT).show();
-//            }
-//        }
-//    });
-//
-//    private void pickFromGallery() {
-//        Intent pickGallery = new Intent(Intent.ACTION_PICK);
-//        pickGallery.setType("image/*");
-//        //startActivityForResult(pickGallery, REQUEST_FOR_STORAGE_CODE);
-//        resultLauncherForGallery.launch(pickGallery);
-//    }
-//    private ActivityResultLauncher<Intent> resultLauncherForGallery = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
-//        @Override
-//        public void onActivityResult(ActivityResult result) {
-//            if (result.getResultCode()==RESULT_OK){
-//                Intent data = result.getData();
-//                imageUri = data.getData();
-//
-//                try {
-//                    binding.personImage.setImageURI(imageUri);
-//                } catch (Exception e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//        }
-//    });
-//
-//    private boolean checkStoragePermission() {
-//        boolean result = ContextCompat.checkSelfPermission(RegisterUserActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED;
-//        return result;
-//    }
-//
-//    private void requestStoragePermission() {
-//        ActivityCompat.requestPermissions(RegisterUserActivity.this, storage_permissions, STORAGE_REQUEST_CODE);
-//    }
-//
-//    private boolean checkCameraPermission() {
-//        boolean resultForCamera = ContextCompat.checkSelfPermission(RegisterUserActivity.this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED;
-//        boolean resultForStorage = ContextCompat.checkSelfPermission(RegisterUserActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED;
-//        return resultForCamera && resultForStorage;
-//    }
-
-//    private void requestCameraPermission() {
-//        ActivityCompat.requestPermissions(RegisterUserActivity.this, camera_permissions, CAMERA_REQUEST_CODE);
-//    }
 
     private boolean checkLocationPermission() {
         boolean result = ContextCompat.checkSelfPermission(RegisterUserActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED;
@@ -689,7 +584,7 @@ public class RegisterUserActivity extends AppCompatActivity implements LocationL
         }else if (fullName.length()<=3){
             binding.textInputFullName.setError("Name is too small.");
             return false;
-        }else if (fullName.length()>=20){
+        }else if (fullName.length()>=26){
             binding.textInputFullName.setError("Name is too long. Put under 20 char.");
             return false;
         } else{
@@ -720,10 +615,10 @@ public class RegisterUserActivity extends AppCompatActivity implements LocationL
         email = binding.emailEt.getText().toString().trim();
 
         if (email.isEmpty()){
-            binding.textInputEmail.setError("Field can't be empty");
+            binding.textInputEmail.setError("Field can't be empty.");
             return false;
         }else  if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
-            binding.textInputEmail.setError("Invalid Email Pattern");
+            binding.textInputEmail.setError("Invalid Email Pattern.");
             return false;
         } else {
             binding.textInputEmail.setError(null);

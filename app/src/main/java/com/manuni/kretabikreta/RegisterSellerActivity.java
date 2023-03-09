@@ -336,7 +336,7 @@ public class RegisterSellerActivity extends AppCompatActivity implements Locatio
 
 
                     } else if (myDiscountNote == 0.0) {
-                        binding.textInputDelivery.setError("Field can't be empty.");
+                        binding.textInputDelivery.setError("Field can't be empty or zero.");
                     } else {
                         binding.textInputDelivery.setError(null);
                         binding.textInputDelivery.setHelperText("Sufficient delivery fee.");

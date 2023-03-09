@@ -56,7 +56,7 @@ public class ProductInfoActivity extends AppCompatActivity {
 
         try {
             binding.pDiscount.setText("৳"+discountPrice);
-            binding.productName.setText("Product: "+productTitle);
+            binding.productName.setText(productTitle);
             binding.textView.setText("৳"+originalPrice);
             binding.descriptionTV.setText(productDescription);
             binding.quantity.setText(productQuantity);
@@ -64,7 +64,7 @@ public class ProductInfoActivity extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        if (discountNote.equals("")){
+        if (discountNote.equals("0")){
             try {
                 binding.discountNoteTV.setVisibility(View.GONE);
                 binding.pDiscount.setVisibility(View.GONE);

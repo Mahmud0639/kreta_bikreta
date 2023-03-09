@@ -79,7 +79,7 @@ public class TotalCostActivity extends AppCompatActivity {
                     totalOrderCostForAll = totalOrderCostForAll + orderCostInDouble;
                 }
 
-                binding.totalCost.setText(String.format("%.2f", totalOrderCostForAll)+" tk");
+                binding.totalCost.setText(String.format("%.2f", totalOrderCostForAll)+"৳");
 
             }
 
@@ -124,7 +124,7 @@ public class TotalCostActivity extends AppCompatActivity {
                     totalOrderCostForCancelled = totalOrderCostForCancelled + orderCostInDouble;
                 }
 
-                binding.totalCostCancelled.setText(String.format("%.2f", totalOrderCostForCancelled)+" tk");
+                binding.totalCostCancelled.setText(String.format("%.2f", totalOrderCostForCancelled)+"৳");
             }
 
             @Override
@@ -168,7 +168,7 @@ public class TotalCostActivity extends AppCompatActivity {
 
                 }
 
-                binding.totalCostInProgress.setText(String.format("%.2f", totalOrderCost)+" tk");
+                binding.totalCostInProgress.setText(String.format("%.2f", totalOrderCost)+"৳");
 
             }
 
@@ -238,7 +238,7 @@ public class TotalCostActivity extends AppCompatActivity {
                 double totalComFeeAsDouble = completedOrderAsDouble*delFeeAsDouble;
 
 
-                binding.deliFeeForCompleted.setText(String.format("%.2f",totalComFeeAsDouble)+" Taka");
+                binding.deliFeeForCompleted.setText(String.format("%.2f",totalComFeeAsDouble)+"৳");
 
 
 
@@ -264,7 +264,7 @@ public class TotalCostActivity extends AppCompatActivity {
                     totalOrderCostForCompleted = totalOrderCostForCompleted + orderCostInDouble;
                 }
 
-                binding.totalCompleted.setText(String.format("%.2f", totalOrderCostForCompleted)+" tk");
+                binding.totalCompleted.setText(String.format("%.2f", totalOrderCostForCompleted)+"৳");
             }
 
             @Override
@@ -286,8 +286,8 @@ public class TotalCostActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
 
-                binding.shopNameTV.setText("Shop Name: "+shopName);
-                binding.deliveryFee.setText("Delivery Fee: "+deliFee+" Taka");
+                binding.shopNameTV.setText("দোকানের নামঃ "+shopName);
+                binding.deliveryFee.setText("ডেলীভারী ফিঃ "+deliFee+" টাকা");
             }
 
             @Override

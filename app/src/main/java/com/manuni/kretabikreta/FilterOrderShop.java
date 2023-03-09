@@ -18,22 +18,24 @@ public class FilterOrderShop extends Filter {
     protected FilterResults performFiltering(CharSequence constraint) {
         FilterResults filterResults = new FilterResults();
         //validate data for search query
-        if (constraint != null && constraint.length()>0){
+        if (constraint != null && constraint.length() > 0) {
             //change to upper case to make it case insensitive
             constraint = constraint.toString().toUpperCase();
             //now store our filter list
             ArrayList<ModelOrderShop> filterProduct = new ArrayList<>();
-            for (int i = 0; i<productArrayList.size();i++){
+            for (int i = 0; i < productArrayList.size(); i++) {
                 //check, search by title and category
 
-                if (productArrayList.get(i).getOrderStatus().toUpperCase().contains(constraint)){
+                if (productArrayList.get(i).getOrderStatus().toUpperCase().contains(constraint)
+                        || productArrayList.get(i).getOrderId().toUpperCase().contains(constraint)
+                ) {
                     filterProduct.add(productArrayList.get(i));
                 }
             }
             filterResults.count = filterProduct.size();
             filterResults.values = filterProduct;
 
-        }else {
+        } else {
             filterResults.count = productArrayList.size();
             filterResults.values = productArrayList;
         }

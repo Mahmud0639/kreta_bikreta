@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import com.manuni.kretabikreta.databinding.ActivityFeedbackBinding;
 
@@ -20,6 +21,13 @@ public class FeedbackActivity extends AppCompatActivity {
         binding.clearButtonId.setOnClickListener(v -> {
             binding.nameEditTextId.setText("");
             binding.messageEditTextId.setText("");
+        });
+
+        binding.backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
         });
     }
 

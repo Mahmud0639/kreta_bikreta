@@ -134,7 +134,7 @@ public class OrderDetailsSellerActivity extends AppCompatActivity {
         dRef.child(Objects.requireNonNull(auth.getUid())).child("Orders").child(orderId).updateChildren(hashMap).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void unused) {
-                String message = "Order is now in "+setSelectedOption;
+                String message = "Order is "+setSelectedOption;
                 Toast.makeText(OrderDetailsSellerActivity.this, message, Toast.LENGTH_SHORT).show();
 
                 try {

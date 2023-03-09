@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".HelpThemActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/toolbarCons"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_60mdp"
+        android:background="@drawable/shape_rect_01"
+        android:padding="@dimen/_10mdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/helpTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Help"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_15font_mdp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/backBtn"
+            android:layout_width="@dimen/_30mdp"
+            android:layout_height="@dimen/_30mdp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_arrow_left_white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbarCons">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/toolbarCons">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="@dimen/_5mdp"
+                app:cardElevation="@dimen/_3mdp"
+                app:cardUseCompatPadding="true"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/sahajjoTxt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10mdp"
+                        android:text="সাহায্যের হাত বাড়িয়ে দিন"
+                        android:textColor="@android:color/holo_green_dark"
+                        android:textSize="@dimen/_17font_mdp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <View
+                        android:id="@+id/viewOne"
+                        android:layout_width="@dimen/_200mdp"
+                        android:layout_height="@dimen/_1mdp"
+                        android:layout_marginTop="@dimen/_5mdp"
+                        android:background="@color/background_theme"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/sahajjoTxt" />
+
+                    <TextView
+                        android:id="@+id/helpText"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_5mdp"
+                        android:layout_marginTop="@dimen/_5mdp"
+                        android:layout_marginEnd="@dimen/_2mdp"
+                        android:text="Shopper অ্যাপটির ব্যাবসার পাশাপাশি অন্যতম আরও একটি প্রধান লক্ষ্য হল এতিম-মিসকিন, অসহায়-দরিদ্র দের দিকে সাহায্যের হাত বাড়িয়ে দেওয়া। যতটুকু সম্ভব তাদের মুখে আনন্দের হাসি ফুটিয়ে তোলার চেষ্টা করা। আপনাদের অল্প একটু চেষ্টায় হতে পারে কারও জীবন রক্ষা। তাই আপনারা যারা সাহায্য করতে ইচ্ছুক তারা নিম্নোক্ত দুইটি বিকাশ,নগদ,রকেট(Personal) নম্বরে আপনাদের ইচ্ছা অনুযায়ী যেকোনো পরিমাণ টাকা দান করতে পারেন।"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_15font_mdp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/viewOne" />
+
+                    <TextView
+                        android:id="@+id/threeNumber"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_5mdp"
+                        android:text="বিকাশ,নগদ,রকেট"
+                        android:textStyle="bold"
+                        android:textColor="#F11862"
+                        android:textSize="@dimen/_17font_mdp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/helpText" />
+
+                    <View
+                        android:id="@+id/viewTwo"
+                        android:layout_width="@dimen/_120mdp"
+                        android:layout_height="@dimen/_1mdp"
+                        android:background="@color/background_theme"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/threeNumber"/>
+                    <!--
+                                    <TextView
+                                        android:id="@+id/bikashTxt"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="@dimen/_20mdp"
+                                        android:text="বিকাশঃ "
+                                        android:textStyle="bold"
+                                        android:textColor="#E91E63"
+                                        android:textSize="@dimen/_16font_mdp"
+                                        app:layout_constraintEnd_toStartOf="@+id/bikashNumber"
+                                        app:layout_constraintHorizontal_bias="0.5"
+                                        app:layout_constraintHorizontal_chainStyle="packed"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toBottomOf="@id/viewTwo" />-->
+
+                    <TextView
+                        android:id="@+id/mahmudNumber"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10mdp"
+                        android:text=""
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_15font_mdp"
+                        app:layout_constraintEnd_toStartOf="@+id/copyBtn"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintHorizontal_chainStyle="packed"
+                        app:layout_constraintStart_toEndOf="@+id/viewTwo"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/viewTwo" />
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/copyBtn"
+                        android:layout_width="@dimen/_40mdp"
+                        android:layout_height="@dimen/_20mdp"
+                        android:layout_marginStart="@dimen/_5mdp"
+                        android:background="@drawable/shop_c_btn"
+                        android:gravity="center"
+                        android:text="Copy"
+                        android:textAllCaps="false"
+                        android:textColor="@color/black"
+                        app:layout_constraintBottom_toBottomOf="@id/mahmudNumber"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toEndOf="@+id/mahmudNumber"
+                        app:layout_constraintTop_toTopOf="@id/mahmudNumber" />
+
+                    <TextView
+                        android:id="@+id/masudNumber"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10mdp"
+                        android:text=""
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_15font_mdp"
+                        app:layout_constraintEnd_toStartOf="@+id/copyBtnTwo"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintHorizontal_chainStyle="packed"
+                        app:layout_constraintStart_toEndOf="@+id/viewTwo"
+                        app:layout_constraintStart_toStartOf="parent"
+                      app:layout_constraintTop_toBottomOf="@id/mahmudNumber" />
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/copyBtnTwo"
+                        android:layout_width="@dimen/_40mdp"
+                        android:layout_height="@dimen/_20mdp"
+                        android:layout_marginStart="@dimen/_5mdp"
+                        android:background="@drawable/shop_c_btn"
+                        android:gravity="center"
+                        android:text="Copy"
+                        android:textAllCaps="false"
+                        android:textColor="@color/black"
+                        app:layout_constraintBottom_toBottomOf="@id/masudNumber"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toEndOf="@+id/masudNumber"
+                        app:layout_constraintTop_toTopOf="@id/masudNumber" />
+
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_5mdp"
+                        android:layout_marginTop="@dimen/_10mdp"
+                        android:layout_marginEnd="@dimen/_2mdp"
+                        android:layout_marginBottom="@dimen/_10mdp"
+                        android:text="বিঃ দ্রঃ- হেল্প সংক্রান্ত কোন আপডেট জানতে Shopper অ্যাপের  মেসেজ বক্স চেক করুন। আপনারা ইচ্ছা করলে আমাদের সাথে স্বশরীরে উপস্থিত থেকে দান কাজে অংশগ্রহণ করতে পারবেন।"
+                        android:textColor="@android:color/holo_red_dark"
+                        android:textSize="@dimen/_17font_mdp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/masudNumber" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            </androidx.cardview.widget.CardView>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

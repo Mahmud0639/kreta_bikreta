@@ -181,7 +181,7 @@ public class ProductSellerAdapter extends RecyclerView.Adapter<ProductSellerAdap
         try {
             binding.titleTV.setText(title);
             binding.descriptionTV.setText(productDescription);
-            binding.categoryTV.setText(productCategory);
+            binding.categoryTV.setText("Category: "+productCategory);
             binding.quantityTV.setText(quantity);
             binding.discountNote.setText(discountNote+"% OFF");
             binding.discountPriceTV.setText(String.format("৳%.2f",discountPriceDouble));

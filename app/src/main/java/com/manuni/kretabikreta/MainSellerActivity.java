@@ -37,6 +37,7 @@ public class MainSellerActivity extends AppCompatActivity {
     private DatabaseReference dbRef;
     private ProgressDialog dialog;
     private String selected;
+    private String  messTitle, messBody;
 
     private ArrayList<ModelProduct> list;
     private ProductSellerAdapter productSellerAdapter;
@@ -54,6 +55,8 @@ public class MainSellerActivity extends AppCompatActivity {
         binding = ActivityMainSellerBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        binding.circlePoorImage.setVisibility(View.GONE);
+
 
 
 
@@ -69,6 +72,8 @@ public class MainSellerActivity extends AppCompatActivity {
             checkUser();
 
             loadToSpinner();
+
+            checkMessage();
 
             showProductsUI();
 
@@ -116,6 +121,27 @@ public class MainSellerActivity extends AppCompatActivity {
             }
         });
 
+        binding.filterOrderTV.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                try {
+                    adapterOrderShop.getFilter().filter(charSequence);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
         PopupMenu popupMenu = new PopupMenu(MainSellerActivity.this,binding.moreBtn);
         popupMenu.getMenu().add("Add Category");
         popupMenu.getMenu().add("Edit Profile");
@@ -125,6 +151,7 @@ public class MainSellerActivity extends AppCompatActivity {
         popupMenu.getMenu().add("Today Balance");
         popupMenu.getMenu().add("Reviews");
         popupMenu.getMenu().add("Settings");
+        popupMenu.getMenu().add("Help Them");
         popupMenu.getMenu().add("Send Feedback");
         popupMenu.getMenu().add("Logout");
 
@@ -132,6 +159,12 @@ public class MainSellerActivity extends AppCompatActivity {
             if (item.getTitle()=="Edit Profile"){
                 try {
                     startActivity(new Intent(MainSellerActivity.this,EditProfileSellerActivity.class));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }else if (item.getTitle()=="Help Them"){
+                try {
+                    startActivity(new Intent(MainSellerActivity.this,HelpThemActivity.class));
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -229,6 +262,37 @@ public class MainSellerActivity extends AppCompatActivity {
             return true;
         });
 
+        binding.helpPoorBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                ConnectivityManager manager = (ConnectivityManager) getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+                NetworkInfo mobile = manager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+                NetworkInfo wifi = manager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+
+                if (mobile.isConnected()){
+                    if (messTitle.equals("") && messBody.equals("")){
+                        startActivity(new Intent(MainSellerActivity.this,HelpThemActivity.class));
+                        return;
+                    }else {
+                        startActivity(new Intent(MainSellerActivity.this,HelpPoorActivity.class));
+                    }
+                }else if (wifi.isConnected()){
+                    if (messTitle.equals("")&&messBody.equals("")){
+                        startActivity(new Intent(MainSellerActivity.this,HelpThemActivity.class));
+                        return;
+                    }else {
+                        startActivity(new Intent(MainSellerActivity.this,HelpPoorActivity.class));
+                    }
+                }else {
+                    Toast.makeText(MainSellerActivity.this, "No connection", Toast.LENGTH_SHORT).show();
+                }
+
+
+
+            }
+        });
+
         binding.moreBtn.setOnClickListener(view -> popupMenu.show());
 
         binding.tabProductsTV.setOnClickListener(view -> showProductsUI());
@@ -273,11 +337,11 @@ public class MainSellerActivity extends AppCompatActivity {
                 builder.setTitle("Filter Orders")
                         .setItems(options, (dialogInterface, i) -> {
                             if (i==0){
-                                binding.filterOrderTV.setText("Showing All Orders");
+                               // binding.filterOrderTV.setText("Showing All Orders");
                                 adapterOrderShop.getFilter().filter("");
                             }else {
                                 String optionClicked = options[i];
-                                binding.filterOrderTV.setText("Showing "+optionClicked+" Orders");
+                                //binding.filterOrderTV.setText("Showing "+optionClicked+" Orders");
                                 adapterOrderShop.getFilter().filter(optionClicked);
                             }
                         }).show();
@@ -594,6 +658,34 @@ public class MainSellerActivity extends AppCompatActivity {
             }
 
 
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+
+            }
+        });
+    }
+
+    private void checkMessage() {
+
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Messages");
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                if (snapshot.exists()){
+                    for (DataSnapshot dataSnapshot: snapshot.getChildren()){
+                        messTitle = ""+dataSnapshot.child("title").getValue();
+                        messBody = ""+dataSnapshot.child("body").getValue();
+
+                        if (messTitle.equals("") && messBody.equals("")){
+                            binding.circlePoorImage.setVisibility(View.GONE);
+                        }else {
+                            binding.circlePoorImage.setVisibility(View.VISIBLE);
+                        }
+
+                    }
+                }
+            }
 
             @Override
             public void onCancelled(DatabaseError error) {

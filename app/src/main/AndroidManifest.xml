@@ -22,18 +22,24 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.KretaBikreta.NoActionBar">
         <activity
+            android:name=".HelpPoorActivity"
+            android:exported="false" />
+        <activity
+            android:name=".HelpThemActivity"
+            android:exported="false" />
+        <activity
             android:name=".OrderDetailsSellerActivity"
             android:exported="false" />
         <activity
             android:name=".EditProfileSellerActivity"
-            android:windowSoftInputMode="stateHidden"
             android:configChanges="orientation|screenSize|keyboardHidden|keyboard"
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".EditProductActivity"
-            android:windowSoftInputMode="stateHidden"
             android:configChanges="orientation|screenSize|keyboardHidden|keyboard"
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".NoInternetActivity"
             android:exported="false" />
@@ -51,9 +57,9 @@
         </activity>
         <activity
             android:name=".RegisterUserActivity"
-            android:windowSoftInputMode="stateHidden"
             android:configChanges="orientation|screenSize|keyboardHidden|keyboard"
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".ShopReviewActivity"
             android:exported="false" />
@@ -62,9 +68,9 @@
             android:exported="false" />
         <activity
             android:name=".ShopDetailsActivity"
-            android:exported="false"
             android:configChanges="orientation|screenSize|keyboardHidden|keyboard"
-            android:windowSoftInputMode="stateHidden"/>
+            android:exported="false"
+            android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".ReviewActivity"
             android:exported="false" />
@@ -79,42 +85,42 @@
             android:exported="false" />
         <activity
             android:name=".MainUserActivity"
-            android:windowSoftInputMode="stateHidden"
             android:configChanges="orientation|screenSize|keyboardHidden|keyboard"
-            android:exported="false" />
+            android:exported="true"
+            android:windowSoftInputMode="stateHidden"></activity>
         <activity
             android:name=".ShopCategoryActivity"
             android:exported="false" />
         <activity
             android:name=".RegisterSellerActivity"
-            android:windowSoftInputMode="stateHidden"
             android:configChanges="orientation|screenSize|keyboardHidden|keyboard"
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".MainSellerActivity"
-            android:windowSoftInputMode="stateHidden"
             android:configChanges="orientation|screenSize|keyboardHidden|keyboard"
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".TermsConditionActivity"
             android:exported="false" />
         <activity
             android:name=".LoginActivity"
-            android:windowSoftInputMode="stateHidden"
             android:configChanges="orientation|screenSize|keyboardHidden|keyboard"
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".EditeProfileUserActivity"
-            android:windowSoftInputMode="stateHidden"
             android:configChanges="orientation|screenSize|keyboardHidden|keyboard"
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".DeleteCategoryActivity"
             android:exported="false" />
         <activity
             android:name=".AddProductActivity"
-            android:windowSoftInputMode="stateHidden"
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".AddCategoryActivity"
             android:exported="false" />

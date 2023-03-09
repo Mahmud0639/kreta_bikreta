@@ -90,10 +90,6 @@
                                 app:layout_constraintTop_toTopOf="@id/profileIVShow"/>-->
 
 
-
-
-
-
             <EditText
                 android:id="@+id/fullNameET"
                 android:layout_width="match_parent"
@@ -102,6 +98,7 @@
                 android:layout_marginStart="@dimen/_5mdp"
                 android:layout_marginTop="@dimen/_5mdp"
                 android:layout_marginEnd="@dimen/_5mdp"
+                android:textColor="@color/black"
                 android:layout_marginBottom="@dimen/_5mdp"
                 android:background="@drawable/shape_rect_02"
                 android:drawableStart="@drawable/ic_person_gray"
@@ -109,7 +106,7 @@
                 android:hint="@string/full_name"
                 android:inputType="textPersonName|textCapWords"
                 android:padding="@dimen/_7mdp"
-                android:textColorHint="@color/background_theme" />
+                android:textColorHint="#919090" />
 
             <EditText
                 android:id="@+id/phoneET"
@@ -118,15 +115,16 @@
                 android:layout_below="@id/fullNameET"
                 android:layout_marginStart="@dimen/_5mdp"
                 android:layout_marginTop="@dimen/_5mdp"
-                android:textColorHint="@color/background_theme"
                 android:layout_marginEnd="@dimen/_5mdp"
+                android:textColor="@color/black"
                 android:layout_marginBottom="@dimen/_5mdp"
                 android:background="@drawable/shape_rect_02"
                 android:drawableStart="@drawable/ic_phone_gray"
                 android:drawablePadding="@dimen/_5mdp"
                 android:hint="@string/phone_number"
                 android:inputType="phone"
-                android:padding="@dimen/_7mdp" />
+                android:padding="@dimen/_7mdp"
+                android:textColorHint="#919090" />
 
             <EditText
                 android:id="@+id/shopET"
@@ -136,6 +134,7 @@
                 android:layout_marginStart="@dimen/_5mdp"
                 android:layout_marginTop="@dimen/_5mdp"
                 android:layout_marginEnd="@dimen/_5mdp"
+                android:textColor="@color/black"
                 android:layout_marginBottom="@dimen/_5mdp"
                 android:background="@drawable/shape_rect_02"
                 android:drawableStart="@drawable/ic_store_gray"
@@ -143,7 +142,7 @@
                 android:hint="@string/shop_name"
                 android:inputType="textPersonName"
                 android:padding="@dimen/_7mdp"
-                android:textColorHint="@color/background_theme" />
+                android:textColorHint="#919090" />
 
 
             <EditText
@@ -159,9 +158,10 @@
                 android:drawableStart="@drawable/ic_shipping_gray"
                 android:drawablePadding="@dimen/_5mdp"
                 android:hint="@string/delivery_fee"
+                android:textColor="@color/black"
                 android:inputType="numberDecimal"
                 android:padding="@dimen/_10mdp"
-                android:textColorHint="@color/background_theme" />
+                android:textColorHint="#919090" />
             <LinearLayout
                 android:id="@+id/linearLayoutLocation"
                 android:layout_width="match_parent"
@@ -180,7 +180,8 @@
                     android:drawableStart="@drawable/ic_location_gray"
                     android:drawablePadding="@dimen/_5mdp"
                     android:hint="@string/county"
-                    android:textColorHint="@color/background_theme"
+                    android:textColor="@color/black"
+                    android:textColorHint="#919090"
                     android:inputType="textPostalAddress"
                     android:padding="@dimen/_10mdp"
                     tools:ignore="TextFields" />
@@ -189,12 +190,13 @@
                     android:id="@+id/stateET"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColorHint="@color/background_theme"
+                    android:textColorHint="#919090"
                     android:layout_weight="1"
                     android:background="@drawable/shape_rect_02"
                     android:drawableStart="@drawable/ic_location_gray"
                     android:drawablePadding="@dimen/_5mdp"
                     android:hint="@string/state"
+                    android:textColor="@color/black"
                     android:inputType="textPostalAddress"
                     android:padding="@dimen/_10mdp"
                     tools:ignore="TextFields" />
@@ -208,7 +210,8 @@
                     android:drawableStart="@drawable/ic_location_gray"
                     android:drawablePadding="@dimen/_5mdp"
                     android:hint="@string/city"
-                    android:textColorHint="@color/background_theme"
+                    android:textColorHint="#919090"
+                    android:textColor="@color/black"
                     android:layout_marginStart="@dimen/_3mdp"
                     android:inputType="textPostalAddress"
                     android:padding="@dimen/_10mdp"
@@ -229,9 +232,10 @@
                 android:drawableStart="@drawable/ic_location_gray"
                 android:drawablePadding="@dimen/_5mdp"
                 android:hint="@string/complete_address"
+                android:textColor="@color/black"
                 android:inputType="textPostalAddress|textMultiLine"
                 android:padding="@dimen/_10mdp"
-                android:textColorHint="@color/background_theme" />
+                android:textColorHint="#919090" />
 
             <Switch
                 android:id="@+id/shopOpenSwitch"
@@ -261,14 +265,7 @@
                 android:text="@string/update"
                 android:textAllCaps="false" />
 
-
         </RelativeLayout>
 
     </ScrollView>
-
-
-
-
-
-
 </RelativeLayout>

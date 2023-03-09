@@ -9,57 +9,52 @@
     tools:context=".TermsConditionActivity">
 
 
-
-
-
-
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         android:background="@drawable/shape_rect_01"
-        android:padding="@dimen/_8mdp">
+        android:padding="@dimen/_8mdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
         <ImageButton
             android:id="@+id/backBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:visibility="invisible"
+            android:background="@android:color/transparent"
             android:src="@drawable/ic_arrow_left_white"
-            android:background="@android:color/transparent"/>
+            android:visibility="invisible" />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Terms and conditions"
-            android:textSize="@dimen/_14font_mdp"
+            android:layout_marginBottom="@dimen/_5mdp"
             android:gravity="center_horizontal"
+            android:text="Terms and conditions"
             android:textColor="@color/white"
-            android:layout_marginBottom="@dimen/_5mdp"/>
-
-
+            android:textSize="@dimen/_14font_mdp" />
 
 
     </LinearLayout>
 
 
-
     <androidx.cardview.widget.CardView
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintTop_toBottomOf="@id/linearLayout"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:cardElevation="@dimen/_3mdp"
-        app:cardBackgroundColor="@color/white"
-        android:layout_marginTop="@dimen/_5mdp"
         android:layout_marginStart="@dimen/_5mdp"
+        android:layout_marginTop="@dimen/_5mdp"
         android:layout_marginEnd="@dimen/_5mdp"
         android:layout_marginBottom="@dimen/_5mdp"
+        app:cardBackgroundColor="@color/white"
         app:cardCornerRadius="@dimen/_10mdp"
-        app:contentPadding="@dimen/_5mdp">
+        app:cardElevation="@dimen/_3mdp"
+        app:contentPadding="@dimen/_5mdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/linearLayout">
 
         <ScrollView
             android:layout_width="match_parent"
@@ -74,12 +69,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Terms and conditions"
-                    android:textColor="#6C5C5C"
-                    android:textStyle="bold"
+                    android:textColor="#302A2A"
                     android:textSize="@dimen/_17font_mdp"
+                    android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
+
 
                 <TextView
                     android:id="@+id/termsInfo"
@@ -89,9 +85,9 @@
                     android:layout_marginTop="@dimen/_20mdp"
                     android:layout_marginEnd="@dimen/_8mdp"
                     android:padding="@dimen/_3mdp"
-                    android:text="@string/terms_conditions_text"
+                    android:text="@string/shopper_terms"
+                    android:textColor="@color/black"
                     android:textSize="@dimen/_12font_mdp"
-                    android:textColor="#919090"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/termsTxt" />
@@ -100,28 +96,29 @@
                     android:id="@+id/viewLine"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_1mdp"
-                    android:background="#919090"
                     android:layout_marginStart="@dimen/_8mdp"
+                    android:layout_marginTop="@dimen/_10mdp"
                     android:layout_marginEnd="@dimen/_8mdp"
-                    app:layout_constraintTop_toBottomOf="@id/termsInfo"
-                    android:layout_marginTop="@dimen/_10mdp"/>
+                    android:background="#919090"
+                    app:layout_constraintTop_toBottomOf="@id/termsInfo" />
 
                 <CheckBox
                     android:id="@+id/termsCheck"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    app:layout_constraintTop_toBottomOf="@id/viewLine"
-                    android:text="I have read and agree with the above terms and conditions"
-                    android:drawableStart="@drawable/check_drawable_bg"
-                    android:button="@null"
-                    android:textColor="#919090"
-                    android:drawablePadding="@dimen/_5mdp"
-                    android:textSize="@dimen/_10font_mdp"
-                    app:layout_constraintStart_toStartOf="parent"
                     android:layout_marginStart="@dimen/_8mdp"
+                    android:layout_marginTop="@dimen/_15mdp"
                     android:layout_marginEnd="@dimen/_8mdp"
+                    android:button="@null"
+                    android:drawableStart="@drawable/check_drawable_bg"
+                    android:drawablePadding="@dimen/_5mdp"
+                    android:text="আমি উপরের সকল শর্তাবলী মেনে নিয়েছি"
+                    android:textStyle="bold"
+                    android:textColor="#302A2A"
+                    android:textSize="@dimen/_12font_mdp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    android:layout_marginTop="@dimen/_15mdp"/>
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/viewLine" />
 
 
                 <Button
@@ -165,17 +162,6 @@
         </ScrollView>
 
     </androidx.cardview.widget.CardView>
-
-
-
-
-
-
-
-
-
-
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -101,10 +101,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_5mdp"
-                        android:text="@string/total_orders"
+                        android:text="মোট অর্ডার "
                         android:textColor="#919090"
                         android:layout_marginEnd="@dimen/_3mdp"
-                        android:textSize="@dimen/_14font_mdp"
+                        android:textSize="@dimen/_12font_mdp"
                         />
 
                     <TextView
@@ -132,10 +132,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_5mdp"
-                        android:text="@string/total_completed"
+                        android:text="মোট সম্পন্ন হয়েছে"
                         android:textColor="#919090"
                         android:layout_marginEnd="@dimen/_3mdp"
-                        android:textSize="@dimen/_14font_mdp"
+                        android:textSize="@dimen/_12font_mdp"
                         />
 
                     <TextView
@@ -163,10 +163,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_5mdp"
-                        android:text="@string/total_cancelled"
+                        android:text="মোট বাতিল হয়েছে"
                         android:textColor="#919090"
                         android:layout_marginEnd="@dimen/_3mdp"
-                        android:textSize="@dimen/_14font_mdp"
+                        android:textSize="@dimen/_12font_mdp"
                         />
 
                     <TextView
@@ -192,9 +192,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_5mdp"
-                        android:text="@string/total_in_progress"
+                        android:text="মোট চলমান"
                         android:textColor="#919090"
-                        android:textSize="@dimen/_14font_mdp"
+                        android:textSize="@dimen/_12font_mdp"
                         android:layout_marginEnd="@dimen/_3mdp"
                         />
 
@@ -224,10 +224,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_5mdp"
-                        android:text="@string/total_orders_in_progress"
+                        android:text="মোট অর্ডার (চলমান)"
                         android:textColor="@color/black"
                         android:layout_marginEnd="@dimen/_3mdp"
-                        android:textSize="@dimen/_15font_mdp"
+                        android:textSize="@dimen/_14font_mdp"
                         />
 
                     <TextView
@@ -252,10 +252,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_5mdp"
-                        android:text="@string/total_orders_cancelled"
+                        android:text="মোট অর্ডার (সম্পন্ন হয়েছে)"
                         android:textColor="@color/black"
                         android:layout_marginEnd="@dimen/_3mdp"
-                        android:textSize="@dimen/_15font_mdp"
+                        android:textSize="@dimen/_14font_mdp"
                         />
 
                     <TextView
@@ -283,10 +283,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_5mdp"
-                        android:text="@string/total_orders_completed"
+                        android:text="মোট অর্ডার (বাতিল হয়েছে)"
                         android:textColor="@color/black"
                         android:layout_marginEnd="@dimen/_3mdp"
-                        android:textSize="@dimen/_15font_mdp"
+                        android:textSize="@dimen/_14font_mdp"
                         />
 
                     <TextView
@@ -309,10 +309,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_5mdp"
-                        android:text="@string/total_orders"
+                        android:text="সর্বমোট অর্ডার"
                         android:textColor="@color/black"
                         android:layout_marginEnd="@dimen/_3mdp"
-                        android:textSize="@dimen/_15font_mdp"
+                        android:textSize="@dimen/_14font_mdp"
                         />
 
                     <TextView
@@ -349,7 +349,7 @@
                         android:layout_marginTop="@dimen/_3mdp"
                         android:layout_marginEnd="@dimen/_3mdp"
                         android:textColor="#919090"
-                        android:text="@string/delivery_fee_completed"
+                        android:text="মোট ডেলীভারী ফিঃ"
                         android:textSize="@dimen/_15font_mdp"
                         />
 

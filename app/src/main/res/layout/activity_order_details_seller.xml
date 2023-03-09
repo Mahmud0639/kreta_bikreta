@@ -259,7 +259,6 @@
         android:padding="@dimen/_5mdp"/>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/orderedItemsRV"
-        android:padding="@dimen/_5mdp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

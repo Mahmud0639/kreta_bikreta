@@ -3,10 +3,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_marginBottom="@dimen/_2mdp"
     app:cardBackgroundColor="@color/white"
     app:cardElevation="@dimen/_3mdp"
-    app:contentPadding="@dimen/_5mdp">
+   >
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -66,7 +65,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/_1mdp"
-            android:background="#D4EBFD"
+            android:background="#DFDEDE"
             android:layout_below="@id/statusTV"
             android:layout_marginTop="@dimen/_4mdp"/>
 

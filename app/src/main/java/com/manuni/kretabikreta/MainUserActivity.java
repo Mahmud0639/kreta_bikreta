@@ -6,7 +6,10 @@ import androidx.appcompat.widget.PopupMenu;
 
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -30,6 +33,8 @@ public class MainUserActivity extends AppCompatActivity {
     ActivityMainUserBinding binding;
     private FirebaseAuth auth;
     private String city,state,myState;
+
+    private String  messTitle, messBody;
 
     String[] data,dataArea;
     ArrayList<String> dataList,areaList;
@@ -56,6 +61,8 @@ public class MainUserActivity extends AppCompatActivity {
         dialog.setTitle("Please wait");
         dialog.setCanceledOnTouchOutside(false);
 
+        binding.circlePoorImage.setVisibility(View.GONE);
+
         progressDialog = new ProgressDialog(MainUserActivity.this);
 
 
@@ -71,6 +78,8 @@ public class MainUserActivity extends AppCompatActivity {
 
             loadToSpinner();
 
+            checkMessage();
+
             showShopsUI();
         } catch (Exception e) {
             e.printStackTrace();
@@ -78,6 +87,7 @@ public class MainUserActivity extends AppCompatActivity {
 
         PopupMenu popupMenu = new PopupMenu(MainUserActivity.this,binding.moreBtn);
         popupMenu.getMenu().add("Edit Profile");
+        popupMenu.getMenu().add("Help Them");
         popupMenu.getMenu().add("Settings");
         popupMenu.getMenu().add("Send Feedback");
         popupMenu.getMenu().add("Logout");
@@ -90,7 +100,13 @@ public class MainUserActivity extends AppCompatActivity {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-            }else if (item.getTitle()=="Settings"){
+            }else if (item.getTitle()=="Help Them"){
+                try {
+                    startActivity(new Intent(MainUserActivity.this,HelpThemActivity.class));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }  else if (item.getTitle()=="Settings"){
                 Intent intent = new Intent(MainUserActivity.this,SettingsActivity.class);
                 try {
                     startActivity(intent);
@@ -111,6 +127,37 @@ public class MainUserActivity extends AppCompatActivity {
                 }
             }
             return true;
+        });
+
+        binding.helpPoorBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                ConnectivityManager manager = (ConnectivityManager) getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+                NetworkInfo mobile = manager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+                NetworkInfo wifi = manager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+
+                if (mobile.isConnected()){
+                    if (messTitle.equals("") && messBody.equals("")){
+                        startActivity(new Intent(MainUserActivity.this,HelpThemActivity.class));
+                        return;
+                    }else {
+                        startActivity(new Intent(MainUserActivity.this,HelpPoorActivity.class));
+                    }
+                }else if (wifi.isConnected()){
+                    if (messTitle.equals("")&&messBody.equals("")){
+                        startActivity(new Intent(MainUserActivity.this,HelpThemActivity.class));
+                        return;
+                    }else {
+                        startActivity(new Intent(MainUserActivity.this,HelpPoorActivity.class));
+                    }
+                }else {
+                    Toast.makeText(MainUserActivity.this, "No connection", Toast.LENGTH_SHORT).show();
+                }
+
+
+
+            }
         });
 
         binding.moreBtn.setOnClickListener(view -> popupMenu.show());
@@ -168,6 +215,34 @@ public class MainUserActivity extends AppCompatActivity {
 
 
 
+    }
+
+    private void checkMessage() {
+
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Messages");
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                if (snapshot.exists()){
+                    for (DataSnapshot dataSnapshot: snapshot.getChildren()){
+                         messTitle = ""+dataSnapshot.child("title").getValue();
+                         messBody = ""+dataSnapshot.child("body").getValue();
+
+                       if (messTitle.equals("") && messBody.equals("")){
+                           binding.circlePoorImage.setVisibility(View.GONE);
+                       }else {
+                           binding.circlePoorImage.setVisibility(View.VISIBLE);
+                       }
+
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+
+            }
+        });
     }
 
     private void loadArea() {
@@ -358,9 +433,9 @@ public class MainUserActivity extends AppCompatActivity {
                     binding.phoneTV.setText(phoneNumber);
 
                     try {
-                        Picasso.get().load(profileImage).placeholder(R.drawable.ic_person_gray).into(binding.profileIV);
+                        Picasso.get().load(profileImage).placeholder(R.drawable.ic_person).into(binding.profileIV);
                     }catch (Exception e){
-                        binding.profileIV.setImageResource(R.drawable.ic_person_gray);
+                        binding.profileIV.setImageResource(R.drawable.ic_person);
                     }
 
                     //load only those shops that are in the user area or state
