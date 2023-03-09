@@ -105,17 +105,7 @@ public class ShopDetailsActivity extends AppCompatActivity {
         cateProgressDialog.show();
 
 
-      /*  easyDB = EasyDB.init(ShopDetailsActivity.this,"ITEM_DB_NEW")
-                .setTableName("ITEM_TABLE_NEW")
-                .addColumn(new Column("Items_Id",new String[]{"text","unique"}))
-                .addColumn(new Column("Items_PID",new String[]{"text","not null"}))
-                .addColumn(new Column("Items_Name",new String[]{"text","not null"}))
-                .addColumn(new Column("Items_Each_Price",new String[]{"text","not null"}))
-                .addColumn(new Column("Items_Price",new String[]{"text","not null"}))
-                .addColumn(new Column("Items_Quantity",new String[]{"text","not null"}))
-                .addColumn(new Column("Items_Pro_Quantity",new String[]{"text","not null"}))
-                .addColumn(new Column("Items_Pro_Image",new String[]{"text","not null"}))
-                .doneTableColumn();*/
+
 
         easyDB = EasyDB.init(ShopDetailsActivity.this,"ITEM_DB_NEW_TWO")
                 .setTableName("ITEM_TABLE_NEW_TWO")
@@ -299,18 +289,6 @@ public class ShopDetailsActivity extends AppCompatActivity {
         AlertDialog.Builder builder = new AlertDialog.Builder(ShopDetailsActivity.this);
         builder.setView(view);
 
-
-      /*  EasyDB easyDB = EasyDB.init(ShopDetailsActivity.this,"ITEM_DB_NEW")
-                .setTableName("ITEM_TABLE_NEW")
-                .addColumn(new Column("Items_Id",new String[]{"text","unique"}))
-                .addColumn(new Column("Items_PID",new String[]{"text","not null"}))
-                .addColumn(new Column("Items_Name",new String[]{"text","not null"}))
-                .addColumn(new Column("Items_Each_Price",new String[]{"text","not null"}))
-                .addColumn(new Column("Items_Price",new String[]{"text","not null"}))
-                .addColumn(new Column("Items_Quantity",new String[]{"text","not null"}))
-                .addColumn(new Column("Items_Pro_Quantity",new String[]{"text","not null"}))
-                .addColumn(new Column("Items_Pro_Image",new String[]{"text","not null"}))
-                .doneTableColumn();*/
 
         EasyDB easyDB = EasyDB.init(ShopDetailsActivity.this,"ITEM_DB_NEW_TWO")
                 .setTableName("ITEM_TABLE_NEW_TWO")
@@ -619,8 +597,8 @@ public class ShopDetailsActivity extends AppCompatActivity {
 
         //prepare data for notification
         // String NOTIFICATION_TOPIC = "/topics/"+Constants.FCM_TOPIC; //must be same as subscribed by user
-        String NOTIFICATION_TITLE = "New Order " + orderId;
-        String NOTIFICATION_MESSAGE = "Congratulations..! You have a new order.";
+        String NOTIFICATION_TITLE = "Order ID " + orderId;
+        String NOTIFICATION_MESSAGE = "অভিনন্দন! আপনার একটি নতুন অর্ডার আসছে।";
         String NOTIFICATION_TYPE = "NewOrder";
 
         String buyerUid = auth.getUid();

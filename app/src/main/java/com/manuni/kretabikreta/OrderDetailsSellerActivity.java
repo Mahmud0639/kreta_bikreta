@@ -134,7 +134,7 @@ public class OrderDetailsSellerActivity extends AppCompatActivity {
         dRef.child(Objects.requireNonNull(auth.getUid())).child("Orders").child(orderId).updateChildren(hashMap).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void unused) {
-                String message = "Order is "+setSelectedOption;
+                String message = "Your order is "+setSelectedOption;
                 Toast.makeText(OrderDetailsSellerActivity.this, message, Toast.LENGTH_SHORT).show();
 
                 try {
@@ -176,9 +176,9 @@ public class OrderDetailsSellerActivity extends AppCompatActivity {
                     //covert timestamp time to proper time
                     Calendar calendar = Calendar.getInstance();
                     calendar.setTimeInMillis(Long.parseLong(orderTime));
-                    String dateTime = DateFormat.format("dd/MM/yy hh:mm aa",calendar).toString();
+                    String dateTime = DateFormat.format("dd/MM/yyyy  hh:mm aa",calendar).toString();
 
-                    binding.orderDateTV.setText(dateTime);
+                    binding.orderDateTV.setText(" "+dateTime);
 
                     switch (orderStatus) {
                         case "In Progress":
@@ -192,9 +192,9 @@ public class OrderDetailsSellerActivity extends AppCompatActivity {
                             break;
                     }
 
-                    binding.orderIdTV.setText(orderId);
-                    binding.orderStatusTV.setText(orderStatus);
-                    binding.amountTV.setText("৳"+orderCost+"[Including delivery fee ৳"+deliveryFee+"]");
+                    binding.orderIdTV.setText(" "+orderId);
+                    binding.orderStatusTV.setText(" "+orderStatus);
+                    binding.amountTV.setText(" ৳"+orderCost+"[Including delivery fee ৳"+deliveryFee+"]");
 
 
 
@@ -238,7 +238,7 @@ public class OrderDetailsSellerActivity extends AppCompatActivity {
 
             String address = addressList.get(0).getAddressLine(0);
 
-            binding.deliveryAddressTV.setText(address);
+            binding.deliveryAddressTV.setText(" "+address);
 
         } catch (IOException e) {
             Toast.makeText(this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
@@ -275,7 +275,7 @@ public class OrderDetailsSellerActivity extends AppCompatActivity {
                         e.printStackTrace();
                     }
 
-                    binding.itemsTV.setText(""+snapshot.getChildrenCount());
+                    binding.itemsTV.setText(" "+snapshot.getChildrenCount());
                 }
 
             }
@@ -349,8 +349,8 @@ public class OrderDetailsSellerActivity extends AppCompatActivity {
                         e.printStackTrace();
                     }
 
-                    binding.buyerEmailTV.setText(email);
-                    binding.buyerPhoneTV.setText(phone);
+                    binding.buyerEmailTV.setText(" "+email);
+                    binding.buyerPhoneTV.setText(" "+phone);
                 }
 
             }
@@ -371,26 +371,6 @@ public class OrderDetailsSellerActivity extends AppCompatActivity {
         String NOTIFICATION_MESSAGE = ""+message;
         String NOTIFICATION_TYPE = "OrderStatusChanged";
 
-//        //prepare json(what to send and where to send)
-//        JSONObject notificationJO = new JSONObject();
-//        JSONObject notificationBodyJO = new JSONObject();
-//
-//        try {
-//            //what to send
-//            notificationBodyJO.put("notificationType",NOTIFICATION_TYPE);
-//            notificationBodyJO.put("buyerUid",orderBy);
-//            notificationBodyJO.put("sellerUid",auth.getUid());//we are logged in as seller so current id is seller user id that is auth.getUid();
-//            notificationBodyJO.put("orderId",orderId);
-//            notificationBodyJO.put("notificationTitle",NOTIFICATION_TITLE);
-//            notificationBodyJO.put("notificationMessage",NOTIFICATION_MESSAGE);
-//            //where to send
-//            //notificationJO.put("to",NOTIFICATION_TOPIC);//to all who subscribe this topic
-//            notificationJO.put("data",notificationBodyJO);
-//
-//        }catch (Exception e){
-//            Toast.makeText(this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
-//
-//        }
 
 
         try {
@@ -400,35 +380,7 @@ public class OrderDetailsSellerActivity extends AppCompatActivity {
         }
     }
 
-    //    private void sendFcmNotification(JSONObject notificationJO) {
-//
-////        JsonObjectRequest jsonObjectRequest=new JsonObjectRequest("https://fcm.googleapis.com/fcm/send", notificationJO, new Response.Listener<JSONObject>() {
-////            @Override
-////            public void onResponse(JSONObject response) {
-////                //sent notification
-////                Log.e("TAG", ""+response );
-////                Toast.makeText(OrderDetailsSellerActivity.this, "Notification sent successfully!", Toast.LENGTH_SHORT).show();
-////
-////            }
-////        }, new Response.ErrorListener() {
-////            @Override
-////            public void onErrorResponse(VolleyError error) {
-////                //failed to send notification
-////                Log.e("TAG", ""+error.getMessage() );
-////                Toast.makeText(OrderDetailsSellerActivity.this, "Failed to send notification", Toast.LENGTH_SHORT).show();
-////
-////            }
-////        }){
-////            @Override
-////            public Map<String, String> getHeaders() throws AuthFailureError {
-////                Map<String,String> headers = new HashMap<>();
-////                headers.put("Content-Type","application/json");
-////               // headers.put("Authorization","key="+Constants.FCM_KEY);
-////                return headers;
-////            }
-////        };
-////        Volley.newRequestQueue(this).add(jsonObjectRequest);
-//    }
+
     private void sendFcmNotification(String notificationType, String buyerUid, String sellerUid, String orderId, String notificationTitle, String notificationMessage) {
         PushNotification notification = new PushNotification(new NotificationData(notificationType, buyerUid, sellerUid, orderId, notificationTitle, notificationMessage), TOPICS);
         sendNotification(notification, orderId);

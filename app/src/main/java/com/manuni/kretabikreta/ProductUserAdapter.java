@@ -257,20 +257,7 @@ public class ProductUserAdapter extends RecyclerView.Adapter<ProductUserAdapter.
 
         myItem++;
 
-       // Toast.makeText(context, ""+myItem, Toast.LENGTH_SHORT).show();
 
-/*
-        EasyDB easyDB = EasyDB.init(context,"ITEM_DB_NEW")
-                .setTableName("ITEM_TABLE_NEW")
-                .addColumn(new Column("Items_Id",new String[]{"text","unique"}))
-                .addColumn(new Column("Items_PID",new String[]{"text","not null"}))
-                .addColumn(new Column("Items_Name",new String[]{"text","not null"}))
-                .addColumn(new Column("Items_Each_Price",new String[]{"text","not null"}))
-                .addColumn(new Column("Items_Price",new String[]{"text","not null"}))
-                .addColumn(new Column("Items_Quantity",new String[]{"text","not null"}))
-                .addColumn(new Column("Items_Pro_Quantity",new String[]{"text","not null"}))
-                .addColumn(new Column("Items_Pro_Image",new String[]{"text","not null"}))
-                .doneTableColumn();*/
 
 
         EasyDB easyDB = EasyDB.init(context,"ITEM_DB_NEW_TWO")

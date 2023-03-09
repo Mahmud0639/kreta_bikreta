@@ -127,7 +127,7 @@ public class OrderDetailsUsersActivity extends AppCompatActivity {
                         e.printStackTrace();
                     }
 
-                    binding.totalItemsTV.setText("" + snapshot.getChildrenCount());
+                    binding.totalItemsTV.setText(" " + snapshot.getChildrenCount());
 
                 }
 
@@ -164,9 +164,9 @@ public class OrderDetailsUsersActivity extends AppCompatActivity {
                     }
                     Calendar calendar = Calendar.getInstance();
                     calendar.setTimeInMillis(Long.parseLong(orderTime));
-                    String dateTime = DateFormat.format("dd/MM/yy hh:mm aa", calendar).toString();
+                    String dateTime = DateFormat.format("dd/MM/yyyy  hh:mm aa", calendar).toString();
 
-                    binding.dateTV.setText(dateTime);
+                    binding.dateTV.setText(" "+dateTime);
 
 
 
@@ -190,9 +190,9 @@ public class OrderDetailsUsersActivity extends AppCompatActivity {
                         break;
                 }
 
-                binding.orderIdTV.setText(orderId);
-                binding.statusTV.setText(orderStatus);
-                binding.totalPriceTV.setText("৳" + orderCost + "[Including delivery fee ৳" + deliveryFee + "]");
+                binding.orderIdTV.setText(" "+orderId);
+                binding.statusTV.setText(" "+orderStatus);
+                binding.totalPriceTV.setText(" ৳" + orderCost + "[Including delivery fee ৳" + deliveryFee + "]");
 
 
                 try {
@@ -229,7 +229,7 @@ public class OrderDetailsUsersActivity extends AppCompatActivity {
 
             addresses = geocoder.getFromLocation(lat, lon, 1);
             String address = addresses.get(0).getAddressLine(0);//complete address
-            binding.deliveryAddressTV.setText(address);
+            binding.deliveryAddressTV.setText(" "+address);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -247,7 +247,7 @@ public class OrderDetailsUsersActivity extends AppCompatActivity {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-                binding.shopNameTV.setText(shopName);
+                binding.shopNameTV.setText(" "+shopName);
 
                 try {
                     loadOrderDetails();

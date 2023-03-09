@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/white"
     tools:context=".OrderDetailsUsersActivity">
 
     <RelativeLayout
@@ -42,14 +43,13 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardElevation="@dimen/_3mdp"
-        app:contentPadding="@dimen/_5mdp">
+        app:cardElevation="@dimen/_3mdp">
 
         <TableLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
-            android:padding="@dimen/_5mdp">
+            android:padding="@dimen/_8mdp">
 
             <TableRow>
 
@@ -57,6 +57,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/order_id"
+                    android:textSize="@dimen/_12font_mdp"
                     android:layout_marginTop="@dimen/_5mdp"
                     android:layout_marginEnd="@dimen/_5mdp"
                     android:textColor="@color/black"
@@ -79,6 +80,7 @@
                     android:text="@string/order_date"
                     android:layout_marginTop="@dimen/_5mdp"
                     android:layout_marginEnd="@dimen/_5mdp"
+                    android:textSize="@dimen/_12font_mdp"
                     android:textColor="@color/black"
                     android:textStyle="bold" />
                 <TextView
@@ -99,6 +101,7 @@
                     android:text="@string/order_status"
                     android:layout_marginTop="@dimen/_5mdp"
                     android:layout_marginEnd="@dimen/_5mdp"
+                    android:textSize="@dimen/_12font_mdp"
                     android:textColor="@color/black"
                     android:textStyle="bold" />
                 <TextView
@@ -120,6 +123,7 @@
                     android:text="@string/shop_name"
                     android:layout_marginTop="@dimen/_5mdp"
                     android:layout_marginEnd="@dimen/_5mdp"
+                    android:textSize="@dimen/_12font_mdp"
                     android:textColor="@color/black"
                     android:textStyle="bold" />
                 <TextView
@@ -143,6 +147,7 @@
                     android:layout_marginTop="@dimen/_5mdp"
                     android:layout_marginEnd="@dimen/_5mdp"
                     android:textColor="@color/black"
+                    android:textSize="@dimen/_12font_mdp"
                     android:textStyle="bold" />
                 <TextView
                     android:id="@+id/totalItemsTV"
@@ -162,6 +167,7 @@
                     android:text="@string/total_price"
                     android:layout_marginTop="@dimen/_5mdp"
                     android:layout_marginEnd="@dimen/_5mdp"
+                    android:textSize="@dimen/_12font_mdp"
                     android:textColor="@color/black"
                     android:textStyle="bold" />
                 <TextView
@@ -182,6 +188,7 @@
                     android:text="@string/delivery_to"
                     android:layout_marginTop="@dimen/_5mdp"
                     android:layout_marginEnd="@dimen/_5mdp"
+                    android:textSize="@dimen/_12font_mdp"
                     android:textColor="@color/black"
                     android:textStyle="bold" />
                 <TextView

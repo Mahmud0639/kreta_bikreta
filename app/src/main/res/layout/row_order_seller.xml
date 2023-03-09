@@ -9,7 +9,10 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+       android:paddingStart="@dimen/_5mdp"
+        android:paddingTop="@dimen/_5mdp"
+        android:paddingEnd="@dimen/_5mdp">
 
         <TextView
             android:id="@+id/orderIdTV"

@@ -46,7 +46,7 @@ public class FeedbackActivity extends AppCompatActivity {
         Intent intent = new Intent(Intent.ACTION_SEND);
         intent.setType("text/email");
         intent.putExtra(Intent.EXTRA_EMAIL, new String[]{"bappimatubber1997@gmail.com","sabbir.islam.masud@gmail.com"});
-        intent.putExtra(Intent.EXTRA_SUBJECT,"Feedback for this app");
+        intent.putExtra(Intent.EXTRA_SUBJECT,"Feedback from Shopper app");
         intent.putExtra(Intent.EXTRA_TEXT,"Name: " + name + "\nMessage: "+feedback);
         try {
             startActivity(Intent.createChooser(intent, "Feedback With"));

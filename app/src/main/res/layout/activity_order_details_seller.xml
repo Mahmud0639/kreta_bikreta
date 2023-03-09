@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/white"
     tools:context=".OrderDetailsSellerActivity">
 
     <RelativeLayout
@@ -53,14 +54,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardElevation="@dimen/_3mdp"
-        android:background="@color/white"
-        app:contentPadding="@dimen/_5mdp">
+        android:background="@color/white">
 
         <TableLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
-            android:padding="@dimen/_5mdp">
+            android:padding="@dimen/_8mdp">
 
             <TableRow>
 
@@ -69,7 +69,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/order_id"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/_14font_mdp"
+                    android:textSize="@dimen/_12font_mdp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -78,8 +78,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/fetching"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/_14font_mdp" />
+                    android:textColor="@color/black" />
 
 
             </TableRow>
@@ -91,7 +90,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/order_date"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/_14font_mdp"
+                    android:textSize="@dimen/_12font_mdp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -100,8 +99,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/fetching"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/_14font_mdp" />
+                    android:textColor="@color/black" />
 
 
             </TableRow>
@@ -113,7 +111,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/order_status"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/_14font_mdp"
+                    android:textSize="@dimen/_12font_mdp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -122,8 +120,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/fetching"
-                    android:textColor="@color/background_theme"
-                    android:textSize="@dimen/_14font_mdp" />
+                    android:textColor="@color/background_theme"/>
 
 
             </TableRow>
@@ -135,7 +132,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/buyer_email"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/_14font_mdp"
+                    android:textSize="@dimen/_12font_mdp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -144,8 +141,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/fetching"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/_14font_mdp" />
+                    android:textColor="@color/black" />
 
 
             </TableRow>
@@ -157,7 +153,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/buyer_phone"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/_14font_mdp"
+                    android:textSize="@dimen/_12font_mdp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -167,8 +163,7 @@
                     android:layout_weight="1"
                     android:autoLink="all"
                     android:text="@string/fetching"
-                    android:textColor="@color/background_theme"
-                    android:textSize="@dimen/_14font_mdp" />
+                    android:textColor="@color/background_theme"/>
 
 
             </TableRow>
@@ -180,7 +175,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/items"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/_14font_mdp"
+                    android:textSize="@dimen/_12font_mdp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -189,8 +184,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/fetching"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/_14font_mdp" />
+                    android:textColor="@color/black" />
 
 
             </TableRow>
@@ -202,7 +196,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/amount"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/_14font_mdp"
+                    android:textSize="@dimen/_12font_mdp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -211,8 +205,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/fetching"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/_14font_mdp" />
+                    android:textColor="@color/black" />
 
 
             </TableRow>
@@ -224,7 +217,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/delivery_addres"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/_14font_mdp"
+                    android:textSize="@dimen/_12font_mdp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -233,8 +226,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/fetching"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/_14font_mdp" />
+                    android:textColor="@color/black" />
 
 
             </TableRow>
