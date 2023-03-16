@@ -98,9 +98,9 @@ public class AdapterShop extends RecyclerView.Adapter<AdapterShop.AdapterShopVie
         }
 
         try {
-            Picasso.get().load(profileImage).placeholder(R.drawable.ic_baseline_store_gray).into(holder.binding.shopIV);
+            Picasso.get().load(profileImage).placeholder(R.drawable.ic_store_gray).into(holder.binding.shopIV);
         }catch (Exception e){
-            holder.binding.shopIV.setImageResource(R.drawable.ic_baseline_store_gray);
+            holder.binding.shopIV.setImageResource(R.drawable.ic_store_gray);
         }
 
         holder.itemView.setOnClickListener(view -> {

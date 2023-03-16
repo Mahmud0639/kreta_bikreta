@@ -72,9 +72,9 @@ public class ReviewActivity extends AppCompatActivity {
                 binding.shopNameTV.setText(shopName);
 
                 try {
-                    Picasso.get().load(shopImage).placeholder(R.drawable.ic_store_gray).into(binding.storeIV);
+                    Picasso.get().load(shopImage).placeholder(R.drawable.ic_store_white_another).into(binding.storeIV);
                 } catch (Exception e) {
-                    Picasso.get().load(R.drawable.ic_store_gray).into(binding.storeIV);
+                    Picasso.get().load(R.drawable.ic_store_white_another).into(binding.storeIV);
                     e.printStackTrace();
                 }
             }

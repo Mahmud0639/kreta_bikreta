@@ -124,6 +124,26 @@
 
 
             </TableRow>
+ <TableRow>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/buyer_name"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_12font_mdp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/buyerNameTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="@color/black"
+                    android:text="@string/fetching" />
+
+
+            </TableRow>
 
             <TableRow>
 

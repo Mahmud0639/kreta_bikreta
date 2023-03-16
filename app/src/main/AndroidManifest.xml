@@ -22,6 +22,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.KretaBikreta.NoActionBar">
         <activity
+            android:name=".UpdateActivity"
+            android:exported="false" />
+        <activity
             android:name=".HelpPoorActivity"
             android:exported="false" />
         <activity
@@ -87,7 +90,7 @@
             android:name=".MainUserActivity"
             android:configChanges="orientation|screenSize|keyboardHidden|keyboard"
             android:exported="true"
-            android:windowSoftInputMode="stateHidden"></activity>
+            android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".ShopCategoryActivity"
             android:exported="false" />

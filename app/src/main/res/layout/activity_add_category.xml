@@ -94,7 +94,7 @@
                 app:boxStrokeColor="#DDDADA"
                 app:endIconMode="clear_text"
                 app:errorEnabled="true"
-                app:helperText="example:Religion Books"
+                app:helperText="Add your category name"
                 app:helperTextEnabled="true"
                 app:helperTextTextColor="#BAB7B7"
                 app:layout_constraintEnd_toEndOf="parent"

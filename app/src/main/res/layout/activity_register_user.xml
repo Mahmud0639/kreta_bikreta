@@ -39,6 +39,15 @@
                 android:layout_alignParentEnd="true"
                 android:layout_marginTop="@dimen/_5mdp"
                 android:background="@drawable/ic_gps_white" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Click Here"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_11font_mdp"
+                android:layout_below="@id/gpsBtn"
+                android:layout_alignParentEnd="true"
+                android:textStyle="bold"/>
 
 
         </RelativeLayout>

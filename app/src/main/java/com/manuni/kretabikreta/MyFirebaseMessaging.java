@@ -83,13 +83,19 @@ public class MyFirebaseMessaging extends FirebaseMessagingService {
 
 
 
+    @TargetApi(Build.VERSION_CODES.S)
     private void showNotification(String orderId, String sellerUid, String buyerUid, String notificationTitle, String notificationDescription, String notificationType) {
+
+        int requestID = (int) System.currentTimeMillis();
+
+
         //notification
         NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         int notificationId = new Random().nextInt(3000);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             setupNotificationChannel(notificationManager);
+
         }
         //handle notification click, start order activity here
         Intent intent = null;
@@ -97,33 +103,44 @@ public class MyFirebaseMessaging extends FirebaseMessagingService {
             intent = new Intent(this, OrderDetailsSellerActivity.class);
             intent.putExtra("orderId", orderId);
             intent.putExtra("orderBy", buyerUid);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+           /* intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);*/
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_SINGLE_TOP);
+
+
 
         } else if (notificationType.equals("OrderStatusChanged")) {
             intent = new Intent(this, OrderDetailsUsersActivity.class);
             intent.putExtra("orderId", orderId);
             intent.putExtra("orderTo", sellerUid);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+           /* intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);*/
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_SINGLE_TOP);
+
+
 
         }
 
-        PendingIntent pendingIntent = PendingIntent.getActivities(this, 0, new Intent[]{intent}, PendingIntent.FLAG_IMMUTABLE);
-        Bitmap largeIcon = BitmapFactory.decodeResource(getResources(), R.drawable.buy_sell);
-        //notification sound
-        Uri notificationSoundUriRingtone = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-        Notification notification = new NotificationCompat.Builder(this, NOTIFICATION_CHANNEL_ID)
-                .setSmallIcon(R.drawable.buy_sell)
-                .setLargeIcon(largeIcon)
-                .setContentTitle(notificationTitle)
-                .setContentText(notificationDescription)
-                .setSound(notificationSoundUriRingtone)
-                .setAutoCancel(true)//when click on the notification will be auto removed
-                .setContentIntent(pendingIntent)
-                .build();
 
-        notificationManager.notify(notificationId, notification);
+            @SuppressLint("UnspecifiedImmutableFlag") PendingIntent pendingIntent = PendingIntent.getActivity(this, requestID, intent,PendingIntent.FLAG_IMMUTABLE|PendingIntent.FLAG_CANCEL_CURRENT);
+
+
+            Bitmap largeIcon = BitmapFactory.decodeResource(getResources(), R.drawable.sh_j);
+            //notification sound
+            Uri notificationSoundUriRingtone = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+            Notification notification = new NotificationCompat.Builder(this, NOTIFICATION_CHANNEL_ID)
+                    .setSmallIcon(R.drawable.sh_j)
+                    .setLargeIcon(largeIcon)
+                    .setContentTitle(notificationTitle)
+                    .setContentText(notificationDescription)
+                    .setSound(notificationSoundUriRingtone)
+                    .setAutoCancel(true)//when click on the notification will be auto removed
+                    .setContentIntent(pendingIntent)
+                    .build();
+
+            notificationManager.notify(notificationId, notification);
+
+
     }
 
 
@@ -139,9 +156,12 @@ public class MyFirebaseMessaging extends FirebaseMessagingService {
         notificationChannel.enableLights(true);
         notificationChannel.setLightColor(Color.RED);
         notificationChannel.enableVibration(true);
+        notificationChannel.setLockscreenVisibility(NotificationCompat.VISIBILITY_PUBLIC);
+
 
         if (notificationManager != null) {
             notificationManager.createNotificationChannel(notificationChannel);
+
         }
     }
 }

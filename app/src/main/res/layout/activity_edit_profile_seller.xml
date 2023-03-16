@@ -37,6 +37,13 @@
             android:layout_alignParentEnd="true"
             android:layout_marginTop="@dimen/_5mdp"
             android:background="@drawable/ic_gps_white" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Click Here"
+            android:textColor="@color/white"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@id/gpsBtn"/>
 
         <TextView
             android:id="@+id/addPhoto"
@@ -134,14 +141,14 @@
                 android:layout_marginStart="@dimen/_5mdp"
                 android:layout_marginTop="@dimen/_5mdp"
                 android:layout_marginEnd="@dimen/_5mdp"
-                android:textColor="@color/black"
                 android:layout_marginBottom="@dimen/_5mdp"
                 android:background="@drawable/shape_rect_02"
-                android:drawableStart="@drawable/ic_store_gray"
+                android:drawableStart="@drawable/ic_baseline_store_gray"
                 android:drawablePadding="@dimen/_5mdp"
                 android:hint="@string/shop_name"
                 android:inputType="textPersonName"
                 android:padding="@dimen/_7mdp"
+                android:textColor="@color/black"
                 android:textColorHint="#919090" />
 
 

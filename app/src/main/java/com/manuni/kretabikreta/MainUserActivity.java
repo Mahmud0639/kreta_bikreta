@@ -3,6 +3,8 @@ package com.manuni.kretabikreta;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.PopupMenu;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
@@ -90,6 +92,7 @@ public class MainUserActivity extends AppCompatActivity {
         popupMenu.getMenu().add("Help Them");
         popupMenu.getMenu().add("Settings");
         popupMenu.getMenu().add("Send Feedback");
+        popupMenu.getMenu().add("Update");
         popupMenu.getMenu().add("Logout");
 
 
@@ -116,6 +119,12 @@ public class MainUserActivity extends AppCompatActivity {
             }else if (item.getTitle()=="Logout"){
                 try {
                     makeMeOffLine();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }else if (item.getTitle()=="Update"){
+                try {
+                    startActivity(new Intent(MainUserActivity.this,UpdateActivity.class));
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -184,9 +193,34 @@ public class MainUserActivity extends AppCompatActivity {
             }
         });
 
-        binding.filterProductBtn.setOnClickListener(view -> categoryDialog());
+        //binding.filterProductBtn.setOnClickListener(view -> categoryDialog());
+        binding.filterProductBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
-        binding.filterArea.setOnClickListener(view -> areaDialog());
+                    try {
+                        categoryDialog();
+                    } catch (Exception e) {
+                        Toast.makeText(MainUserActivity.this, "Please wait... ", Toast.LENGTH_SHORT).show();
+                    }
+
+
+            }
+        });
+
+        //binding.filterArea.setOnClickListener(view -> areaDialog());
+
+        binding.filterArea.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try {
+                    areaDialog();
+                } catch (Exception e) {
+                    Toast.makeText(MainUserActivity.this, "Please wait...", Toast.LENGTH_SHORT).show();
+                    loadArea();
+                }
+            }
+        });
 
         binding.searchBar.addTextChangeListener(new TextWatcher() {
             @Override
@@ -498,7 +532,12 @@ public class MainUserActivity extends AppCompatActivity {
 
 
                                 }
+                                LinearLayoutManager linearLayoutManager = new LinearLayoutManager(MainUserActivity.this);
+                                DividerItemDecoration itemDecoration = new DividerItemDecoration(MainUserActivity.this,linearLayoutManager.getOrientation());
+
                                 adapterOrderUser = new AdapterOrderUser(MainUserActivity.this,modelOrderUsers);
+
+                                binding.ordersRV.addItemDecoration(itemDecoration);
                                 try {
                                     binding.ordersRV.setAdapter(adapterOrderUser);
                                 } catch (Exception e) {

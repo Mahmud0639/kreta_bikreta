@@ -25,7 +25,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:text="Help Poor"
+            android:text="Message"
             android:textColor="@color/white"
             android:textSize="@dimen/_15font_mdp"
             android:textStyle="bold" />
@@ -106,7 +106,7 @@
                         android:layout_marginStart="@dimen/_5mdp"
                         android:layout_marginTop="@dimen/_5mdp"
                         android:layout_marginEnd="@dimen/_2mdp"
-                        android:text="Shopper অ্যাপটির ব্যাবসার পাশাপাশি অন্যতম আরও একটি প্রধান লক্ষ্য হল এতিম-মিসকিন, অসহায়-দরিদ্র দের দিকে সাহায্যের হাত বাড়িয়ে দেওয়া। যতটুকু সম্ভব তাদের মুখে আনন্দের হাসি ফুটিয়ে তোলার চেষ্টা করা। আপনাদের অল্প একটু চেষ্টায় হতে পারে কারও জীবন রক্ষা। তাই আপনারা যারা সাহায্য করতে ইচ্ছুক তারা নিম্নোক্ত বিকাশ(Personal) নম্বরে আপনাদের ইচ্ছা অনুযায়ী যেকোনো পরিমাণ টাকা দান করতে পারেন।"
+                        android:text="Shopper অ্যাপটির ব্যাবসার পাশাপাশি অন্যতম আরও একটি প্রধান লক্ষ্য হল এতিম-মিসকিন, অসহায়-দরিদ্র দের দিকে সাহায্যের হাত বাড়িয়ে দেওয়া। যতটুকু সম্ভব তাদের মুখে আনন্দের হাসি ফুটিয়ে তোলার চেষ্টা করা। আপনাদের অল্প একটু চেষ্টায় হতে পারে কারও জীবন রক্ষা।"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_15font_mdp"
                         app:layout_constraintEnd_toEndOf="parent"

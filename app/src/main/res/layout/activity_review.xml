@@ -40,7 +40,7 @@
         android:layout_below="@id/toolbarRL"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/_5mdp"
-        android:src="@drawable/ic_store_gray"
+        android:src="@drawable/ic_store_white_another"
         app:civ_border_color="@color/background_theme"
         app:civ_border_width="@dimen/_1mdp" />
 

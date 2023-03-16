@@ -45,8 +45,8 @@
             android:id="@+id/shopIV"
             android:layout_width="@dimen/_75mdp"
             android:layout_height="@dimen/_75mdp"
-            android:src="@drawable/ic_store_gray"
-            app:civ_border_width="@dimen/_2mdp"
+            android:src="@drawable/ic_store_white_another"
+            app:civ_border_width="@dimen/_1mdp"
             app:civ_border_color="#988F8F"/>
 
         <TextView

@@ -4,6 +4,8 @@ import static com.manuni.kretabikreta.Constants.TOPICS;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
@@ -49,7 +51,7 @@ public class OrderDetailsSellerActivity extends AppCompatActivity {
     private String sourceBuyerLatitude, sourceBuyerLongitude;
 
     private ArrayList<ModelOrderedItems> modelOrderedItems;
-    private AdapterOrderedItems adapterOrderedItems;
+    private AdapterOrderedItemsSeller adapterOrderedItems;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -268,7 +270,11 @@ public class OrderDetailsSellerActivity extends AppCompatActivity {
                             e.printStackTrace();
                         }
                     }
-                    adapterOrderedItems = new AdapterOrderedItems(OrderDetailsSellerActivity.this,modelOrderedItems);
+                    LinearLayoutManager linearLayoutManager = new LinearLayoutManager(OrderDetailsSellerActivity.this);
+                    DividerItemDecoration itemDecoration = new DividerItemDecoration(OrderDetailsSellerActivity.this,linearLayoutManager.getOrientation());
+
+                    adapterOrderedItems = new AdapterOrderedItemsSeller(OrderDetailsSellerActivity.this,modelOrderedItems);
+                    binding.orderedItemsRV.addItemDecoration(itemDecoration);
                     try {
                         binding.orderedItemsRV.setAdapter(adapterOrderedItems);
                     } catch (Exception e) {
@@ -342,15 +348,18 @@ public class OrderDetailsSellerActivity extends AppCompatActivity {
                     }
                     String email = null;
                     String phone = null;
+                    String name = null;
                     try {
                         email = ""+snapshot.child("email").getValue();
                         phone = ""+snapshot.child("phoneNumber").getValue();
+                        name = ""+snapshot.child("fullName").getValue();
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
 
                     binding.buyerEmailTV.setText(" "+email);
                     binding.buyerPhoneTV.setText(" "+phone);
+                    binding.buyerNameTV.setText(" "+name);
                 }
 
             }
@@ -367,7 +376,7 @@ public class OrderDetailsSellerActivity extends AppCompatActivity {
 
         //prepare data for notification
         //String NOTIFICATION_TOPIC = "/topics/"+Constants.FCM_TOPIC; //must be same as subscribed by user
-        String NOTIFICATION_TITLE = "Your Order "+orderId;
+        String NOTIFICATION_TITLE = "Your Order ID: "+orderId;
         String NOTIFICATION_MESSAGE = ""+message;
         String NOTIFICATION_TYPE = "OrderStatusChanged";
 
@@ -392,7 +401,7 @@ public class OrderDetailsSellerActivity extends AppCompatActivity {
             public void onResponse(Call<PushNotification> call,retrofit2.Response<PushNotification> response) {
                 if (response.isSuccessful()) {
 
-                    Toast.makeText(OrderDetailsSellerActivity.this, "Success", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(OrderDetailsSellerActivity.this, "Notification sent.", Toast.LENGTH_SHORT).show();
 
 //                    Intent totalCostIntent = new Intent(OrderDetailsSellerActivity.this,TotalCostActivity.class);
 //                    totalCostIntent.putExtra("orderToSeller",orderTo);

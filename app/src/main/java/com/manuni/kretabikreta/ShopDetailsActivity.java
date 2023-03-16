@@ -4,6 +4,8 @@ import static com.manuni.kretabikreta.Constants.TOPICS;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
@@ -130,6 +132,7 @@ public class ShopDetailsActivity extends AppCompatActivity {
         binding.backArrowBtn.setOnClickListener(view -> onBackPressed());
 
         binding.cartBtn.setOnClickListener(view -> {
+
             try {
                 showCartDialog();
             } catch (Exception e) {
@@ -577,7 +580,11 @@ public class ShopDetailsActivity extends AppCompatActivity {
                         e.printStackTrace();
                     }
                 }
+                LinearLayoutManager linearLayoutManager = new LinearLayoutManager(ShopDetailsActivity.this);
+                DividerItemDecoration itemDecoration = new DividerItemDecoration(ShopDetailsActivity.this,linearLayoutManager.getOrientation());
                 productUserAdapter = new ProductUserAdapter(ShopDetailsActivity.this, modelProducts);
+
+                binding.productRV.addItemDecoration(itemDecoration);
                 try {
                     binding.productRV.setAdapter(productUserAdapter);
                 } catch (Exception e) {
@@ -597,7 +604,7 @@ public class ShopDetailsActivity extends AppCompatActivity {
 
         //prepare data for notification
         // String NOTIFICATION_TOPIC = "/topics/"+Constants.FCM_TOPIC; //must be same as subscribed by user
-        String NOTIFICATION_TITLE = "Order ID " + orderId;
+        String NOTIFICATION_TITLE = "Order ID: " + orderId;
         String NOTIFICATION_MESSAGE = "অভিনন্দন! আপনার একটি নতুন অর্ডার আসছে।";
         String NOTIFICATION_TYPE = "NewOrder";
 
@@ -636,7 +643,7 @@ public class ShopDetailsActivity extends AppCompatActivity {
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
-                    Toast.makeText(ShopDetailsActivity.this, "Success", Toast.LENGTH_SHORT).show();
+                   // Toast.makeText(ShopDetailsActivity.this, "Notification sent", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(ShopDetailsActivity.this, "Failed", Toast.LENGTH_SHORT).show();
                 }

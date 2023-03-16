@@ -92,7 +92,18 @@ public class AddProductActivity extends AppCompatActivity {
         });
 
         binding.productIconIV.setOnClickListener(view -> showImagePickDialog());
-        binding.categoryTV.setOnClickListener(view -> categoryDialog());
+
+
+        binding.categoryTV.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (dataList.size()==0){
+                    Toast.makeText(AddProductActivity.this, "Please add category first to upload.", Toast.LENGTH_SHORT).show();
+                }else {
+                    categoryDialog();
+                }
+            }
+        });
 
         binding.addProductBtn.setOnClickListener(view -> inputData());
         binding.backArrowBtn.setOnClickListener(view -> onBackPressed());
@@ -126,6 +137,10 @@ public class AddProductActivity extends AppCompatActivity {
         }
         if (TextUtils.isEmpty(productBrand)){
             Toast.makeText(this, "Brand is empty!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (productCategory.equals("Category")){
+            Toast.makeText(this, "You need to add a category first to upload a product.", Toast.LENGTH_SHORT).show();
             return;
         }
         if (TextUtils.isEmpty(productCategory)){
@@ -202,6 +217,7 @@ public class AddProductActivity extends AppCompatActivity {
         }
 
         addProductToDb();
+        Toast.makeText(this, ""+productCategory, Toast.LENGTH_SHORT).show();
 
     }
     DecimalFormat decimalFormat = new DecimalFormat("0.00");

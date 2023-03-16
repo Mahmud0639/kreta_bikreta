@@ -65,6 +65,18 @@
             android:background="@android:color/transparent"
             android:src="@drawable/ic_more_white" />
 
+
+
+       <ImageButton
+           android:id="@+id/helpPoorBtn"
+           android:layout_width="@dimen/_20mdp"
+           android:layout_height="@dimen/_20mdp"
+           android:src="@drawable/ic_message_white"
+           android:layout_below="@id/shopName"
+           android:layout_marginTop="@dimen/_3mdp"
+           android:layout_alignParentEnd="true"
+           android:background="@android:color/transparent"/>
+
         <ImageView
             android:id="@+id/circlePoorImage"
             android:layout_width="@dimen/_8mdp"
@@ -73,18 +85,6 @@
             android:layout_alignParentEnd="true"
             android:visibility="gone"
             android:src="@drawable/circle_poor"/>
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/helpPoorBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/_25mdp"
-            android:layout_below="@id/shopName"
-            android:layout_alignParentEnd="true"
-            android:layout_marginTop="@dimen/_3mdp"
-            android:background="@drawable/help_poor_btn"
-            android:text="Message"
-            android:textAllCaps="false"
-            android:textColor="@color/white" />
 
         <!--        <ImageButton-->
         <!--            android:id="@+id/reviewBtn"-->
@@ -118,6 +118,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/nameTxt"
+            android:layout_toStartOf="@id/moreBtn"
             android:layout_toEndOf="@id/profileIV"
             android:maxLines="1"
             android:text="@string/fetching"
@@ -130,6 +131,7 @@
             android:layout_below="@id/shopName"
             android:layout_toEndOf="@id/profileIV"
             android:maxLines="2"
+            android:layout_toStartOf="@id/helpPoorBtn"
             android:text="@string/fetching"
             android:textColor="@color/white" />
 
@@ -251,8 +253,9 @@
             android:hint="Search by order ID"
             android:drawableStart="@drawable/ic_search_gray"
             android:inputType="text"
+            android:textColorHint="#919090"
             android:padding="@dimen/_8mdp"
-            android:textColor="#919090" />
+            android:textColor="@color/black" />
 
         <ImageButton
             android:id="@+id/filterOrderBtn"

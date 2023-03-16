@@ -65,7 +65,7 @@
     <string name="are_you_a_seller_register_as_seller">Are you a seller? Register as seller</string>
     <string name="reviews">Reviews</string>
     <string name="how_was_your_experience_with_seller_your_feedback_is_very_important_to_improve_our_quality_of_services">How was your experience with seller? Your feedback is very important to improve our quality of services.</string>
-    <string name="write_your_review">Write your review...</string>
+    <string name="write_your_review">Write your review…</string>
     <string name="settings">Settings</string>
     <string name="notification_enable_disable">Notification enable/disable</string>
     <string name="status_notification_disabled">Status: Notification disabled</string>
@@ -121,4 +121,8 @@
     <string name="terms_conditions_text">By default you\'re blocked while creating an account automatically without our permission to create a seller account.You may be blocked by your admin if you violet any rules.Please contact your admin to unblock your account and make sure that you are definitely opening the account on your own volition. In any circumstances you may be contacted, you will immediately join us in contacting you. In any problem you can contact our admin. So if you are agree then please click on the I agree button.If you are old user then if you blocked then there is no need to set shop category again. You just need to be unblocked by an admin.If you are old user then if you blocked then there is no need to set shop category again. You just need to be unblocked by an admin.If you are old user then if you blocked then there is no need to set shop category again. You just need to be unblocked by an admin.If you are old user then if you blocked then there is no need to set shop category again. You just need to be unblocked by an admin.If you are old user then if you blocked then there is no need to set shop category again. You just need to be unblocked by an admin.If you are old user then if you blocked then there is no need to set shop category again. You just need to be unblocked by an admin.If you are old user then if you blocked then there is no need to set shop category again. You just need to be unblocked by an admin.</string>
     <string name="fetching">fetching…</string>
     <string name="shopper_terms"><b>Shopper</b> App এ আপনাকে স্বাগতম। এটি একটি অনলাইন ভিত্তিক অ্যাপ্লিকেশন, যার মাধ্যমে সব ধরনের পণ্য আপনার হাতের নাগালে পেয়ে যাবেন। আপনি অতি সহজে বাসায়/দোকানে বসে পণ্য ক্রয়/বিক্রয় করতে পারবেন।এতে আপনার সময় এবং শ্রম দুটোই বেচে যাবে।অ্যাপ্লিকেশনের ডিজাইন খুব সহজ ভাবে করা হয়েছে। আমাদের লক্ষ্য এবং উদ্দেশ্য হচ্ছে কম সময়ের মধ্যে সঠিক পণ্য টা আপনাদের কাছে পৌঁছে দেওয়া।\n\n <b>আমাদের শর্তাবলীঃ</b>\n১। পণ্যের গুণগত মান ঠিক রাখতে হবে।\n২।পণ্যের প্যাকেট ফাটা,ছিঁড়া অথবা মেয়াদোত্তীর্ণ পণ্য দেওয়া যাবে না।\n৩। নির্দিষ্ট দামের বেশি দাম লেখা যাবে না।\n৪। সঠিক সময়ের মধ্যে ডেলিভারি দিতে হবে।\n৫। ক্রেতার কাছে কত টাকার নোট আছে সে পরিমাণ ভাংতি টাকা ডেলিভারি ম্যান দিয়ে পাঠিয়ে দিতে হবে।\n৬। ডেলিভারি ম্যানকে অবশ্যই মাল চেক করে নিতে হবে।\n৭। কোন প্রকার অবৈধ মাল পরিবহনের জন্য কর্তৃপক্ষ দায়ী থাকবে না।\n</string>
+    <string name="set_discount_price">Set Discount Price</string>
+    <string name="original_price_new">Original Price</string>
+    <string name="buyer_name">Buyer Name</string>
+    <string name="update_data">অ্যাপটি আপডেট করতে কোন ধরনের সমস্যা হলে প্রথমে uninstall করুন,তার পরে আবার install করুন।</string>
 </resources>

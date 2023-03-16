@@ -142,7 +142,7 @@ public class RegisterSellerActivity extends AppCompatActivity implements Locatio
                 if (charSequence.length() <= 3) {
                     binding.textInputFullName.setError("Name is too small.");
 
-                } else if (charSequence.length() >= 20) {
+                } else if (charSequence.length() >= 26) {
                     binding.textInputFullName.setError("Name is too long. Put under 20 char.");
 
                 } else {
@@ -171,7 +171,7 @@ public class RegisterSellerActivity extends AppCompatActivity implements Locatio
                 if (charSequence.length() <= 3) {
                     binding.textInputShopName.setError("Shop name is too small.");
 
-                } else if (charSequence.length() >= 20) {
+                } else if (charSequence.length() >= 30) {
                     binding.textInputShopName.setError("Shop name is too long.");
 
                 } else {
@@ -356,22 +356,14 @@ public class RegisterSellerActivity extends AppCompatActivity implements Locatio
         });
 
 
-        binding.personImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                try {
-                    showImagePickDialog();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+        binding.personImage.setOnClickListener(view -> {
+            try {
+                showImagePickDialog();
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         });
-        binding.backArrowBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onBackPressed();
-            }
-        });
+        binding.backArrowBtn.setOnClickListener(view -> onBackPressed());
         binding.registerBtnUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -394,38 +386,10 @@ public class RegisterSellerActivity extends AppCompatActivity implements Locatio
         if (!validateFullName() | !validateShopName() | !validatePhone() | !validateEmail() | !validatePassword() | !validateConfirmPassword() | !validateDeliveryFee() | !validateMatchPass()) {
             return;
         }
-//        if (TextUtils.isEmpty(binding.fullNameET.getText().toString().trim())) {
-//            Toast.makeText(this, "Insert full name", Toast.LENGTH_SHORT).show();
-//            return;
-//        }
-//        if (TextUtils.isEmpty(binding.shopET.getText().toString().trim())) {
-//            Toast.makeText(this, "Insert Shop Name", Toast.LENGTH_SHORT).show();
-//            return;
-//        }
-//        if (TextUtils.isEmpty(binding.phoneET.getText().toString().trim())) {
-//            Toast.makeText(this, "Insert phone number", Toast.LENGTH_SHORT).show();
-//            return;
-//        }
-//        if (TextUtils.isEmpty(binding.deliveryET.getText().toString().trim())) {
-//            Toast.makeText(this, "Insert delivery fee", Toast.LENGTH_SHORT).show();
-//            return;
-//        }
         if (latitude == 0.0 || longitude == 0.0) {
             Toast.makeText(this, "Please click on the GPS tracker", Toast.LENGTH_SHORT).show();
             return;
         }
-//        if (!Patterns.EMAIL_ADDRESS.matcher(binding.emailEt.getText().toString().trim()).matches()) {
-//            Toast.makeText(this, "Invalid email address!", Toast.LENGTH_SHORT).show();
-//            return;
-//        }
-//        if (binding.passwordET.getText().toString().trim().length() < 6) {
-//            Toast.makeText(this, "You must take character 6 digits at least!", Toast.LENGTH_SHORT).show();
-//            return;
-//        }
-//        if (!binding.confirmPasswordET.getText().toString().trim().equals(binding.passwordET.getText().toString().trim())) {
-//            Toast.makeText(this, "Password doesn't match", Toast.LENGTH_SHORT).show();
-//            return;
-//        }
         ConnectivityManager manager = (ConnectivityManager) getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo wifi = manager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
         NetworkInfo mobile = manager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
@@ -453,26 +417,20 @@ public class RegisterSellerActivity extends AppCompatActivity implements Locatio
     private void createAccount() {
         dialogForAccount.setMessage("Creating Account...");
         dialogForAccount.show();
-        auth.createUserWithEmailAndPassword(binding.emailEt.getText().toString().trim(), binding.passwordET.getText().toString().trim()).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
-            @Override
-            public void onSuccess(AuthResult authResult) {
-                try {
-                    saveDataInfoToDatabase();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+        auth.createUserWithEmailAndPassword(binding.emailEt.getText().toString().trim(), binding.passwordET.getText().toString().trim()).addOnSuccessListener(authResult -> {
+            try {
+                saveDataInfoToDatabase();
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(Exception e) {
-                dialogForAccount.dismiss();
-                Toast.makeText(RegisterSellerActivity.this, "" + e.getMessage(), Toast.LENGTH_SHORT).show();
-            }
+        }).addOnFailureListener(e -> {
+            dialogForAccount.dismiss();
+            Toast.makeText(RegisterSellerActivity.this, "" + e.getMessage(), Toast.LENGTH_SHORT).show();
         });
     }
 
     private void saveDataInfoToDatabase() {
-        dialogForAccount.setMessage("Saving Data to Database...");
+        dialogForAccount.setMessage("Please wait.We are creating your account...");
 
         if (imageUri == null) {
             HashMap<String, Object> hashMap = new HashMap<>();
@@ -498,85 +456,66 @@ public class RegisterSellerActivity extends AppCompatActivity implements Locatio
             hashMap.put("accountStatus", "blocked");
             hashMap.put("shopCategory", "false");
 
-            reference.child(Objects.requireNonNull(auth.getUid())).setValue(hashMap).addOnSuccessListener(new OnSuccessListener<Void>() {
-                @Override
-                public void onSuccess(Void unused) {
-                    dialogForAccount.dismiss();
-                    try {
-                        checkSellerStatus();
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
+            reference.child(Objects.requireNonNull(auth.getUid())).setValue(hashMap).addOnSuccessListener(unused -> {
+                dialogForAccount.dismiss();
+                try {
+                    checkSellerStatus();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
 
-                }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(Exception e) {
-                    dialogForAccount.dismiss();
-                }
-            });
+            }).addOnFailureListener(e -> dialogForAccount.dismiss());
 
         } else {
             String filePathAndName = "profile_images/" + "" + auth.getUid();
-            storageReference.child(filePathAndName).putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                @Override
-                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    Task<Uri> uriTask = taskSnapshot.getStorage().getDownloadUrl();
+            storageReference.child(filePathAndName).putFile(imageUri).addOnSuccessListener(taskSnapshot -> {
+                Task<Uri> uriTask = taskSnapshot.getStorage().getDownloadUrl();
 
-                    while (!uriTask.isSuccessful()) ;
-                    Uri downloadUrl = uriTask.getResult();
+                while (!uriTask.isSuccessful()) ;
+                Uri downloadUrl = uriTask.getResult();
 
-                    if (uriTask.isSuccessful()) {
-                        HashMap<String, Object> hashMap = new HashMap<>();
-                        hashMap.put("fullName", "" + binding.fullNameET.getText().toString().trim());
-                        hashMap.put("shopName", "" + binding.shopET.getText().toString().trim());
-                        hashMap.put("phoneNumber", "" + binding.phoneET.getText().toString().trim());
-                        hashMap.put("deliveryFee", "" + binding.deliveryET.getText().toString().trim());
-                        hashMap.put("countryName", "" + binding.countryET.getText().toString().trim());
-                        hashMap.put("state", "" + binding.stateET.getText().toString().trim());
-                        hashMap.put("city", "" + binding.cityET.getText().toString().trim());
-                        hashMap.put("address", "" + binding.completeAddressET.getText().toString().trim());
-                        hashMap.put("email", "" + binding.emailEt.getText().toString().trim());
-                        hashMap.put("password", "" + binding.passwordET.getText().toString().trim());
-                        hashMap.put("confirmPassword", "" + binding.confirmPasswordET.getText().toString().trim());
-                        hashMap.put("uid", "" + auth.getUid());
-                        hashMap.put("latitude", "" + latitude);
-                        hashMap.put("longitude", "" + longitude);
-                        hashMap.put("accountType", "Seller");
-                        hashMap.put("shopOpen", "true");
-                        hashMap.put("timestamp", "" + System.currentTimeMillis());
-                        hashMap.put("online", "true");
-                        hashMap.put("profileImage", "" + downloadUrl);
-                        hashMap.put("accountStatus", "blocked");
-                        hashMap.put("shopCategory", "false");
+                if (uriTask.isSuccessful()) {
+                    HashMap<String, Object> hashMap = new HashMap<>();
+                    hashMap.put("fullName", "" + binding.fullNameET.getText().toString().trim());
+                    hashMap.put("shopName", "" + binding.shopET.getText().toString().trim());
+                    hashMap.put("phoneNumber", "" + binding.phoneET.getText().toString().trim());
+                    hashMap.put("deliveryFee", "" + binding.deliveryET.getText().toString().trim());
+                    hashMap.put("countryName", "" + binding.countryET.getText().toString().trim());
+                    hashMap.put("state", "" + binding.stateET.getText().toString().trim());
+                    hashMap.put("city", "" + binding.cityET.getText().toString().trim());
+                    hashMap.put("address", "" + binding.completeAddressET.getText().toString().trim());
+                    hashMap.put("email", "" + binding.emailEt.getText().toString().trim());
+                    hashMap.put("password", "" + binding.passwordET.getText().toString().trim());
+                    hashMap.put("confirmPassword", "" + binding.confirmPasswordET.getText().toString().trim());
+                    hashMap.put("uid", "" + auth.getUid());
+                    hashMap.put("latitude", "" + latitude);
+                    hashMap.put("longitude", "" + longitude);
+                    hashMap.put("accountType", "Seller");
+                    hashMap.put("shopOpen", "true");
+                    hashMap.put("timestamp", "" + System.currentTimeMillis());
+                    hashMap.put("online", "true");
+                    hashMap.put("profileImage", "" + downloadUrl);
+                    hashMap.put("accountStatus", "blocked");
+                    hashMap.put("shopCategory", "false");
 
-                        reference.child(auth.getUid()).setValue(hashMap).addOnSuccessListener(new OnSuccessListener<Void>() {
-                            @Override
-                            public void onSuccess(Void unused) {
-                                dialogForAccount.dismiss();
-                                try {
-                                    checkSellerStatus();
-                                } catch (Exception e) {
-                                    e.printStackTrace();
-                                }
-                                //startActivity(new Intent(RegisterSellerActivity.this,MainSellerActivity.class));
-                                //finish();
-                            }
-                        }).addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(Exception e) {
-                                dialogForAccount.dismiss();
-                            }
-                        });
-                    }
-
+                    reference.child(Objects.requireNonNull(auth.getUid())).setValue(hashMap).addOnSuccessListener(unused -> {
+                        dialogForAccount.dismiss();
+                        try {
+                            checkSellerStatus();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(Exception e) {
+                            dialogForAccount.dismiss();
+                        }
+                    });
                 }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(Exception e) {
-                    dialogForAccount.dismiss();
-                    Toast.makeText(RegisterSellerActivity.this, "" + e.getMessage(), Toast.LENGTH_SHORT).show();
-                }
+
+            }).addOnFailureListener(e -> {
+                dialogForAccount.dismiss();
+                Toast.makeText(RegisterSellerActivity.this, "" + e.getMessage(), Toast.LENGTH_SHORT).show();
             });
 
         }
@@ -765,10 +704,10 @@ public class RegisterSellerActivity extends AppCompatActivity implements Locatio
         email = binding.emailEt.getText().toString().trim();
 
         if (email.isEmpty()) {
-            binding.textInputEmail.setError("Field can't be empty");
+            binding.textInputEmail.setError("Field can't be empty.");
             return false;
         } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            binding.textInputEmail.setError("Invalid Email Pattern");
+            binding.textInputEmail.setError("Invalid Email Pattern.");
             return false;
         } else {
             binding.textInputEmail.setError(null);
@@ -918,7 +857,7 @@ public class RegisterSellerActivity extends AppCompatActivity implements Locatio
             binding.textInputDelivery.setError("Field can't be empty.");
             return false;
         } else if (delivery >= 0 && delivery < 5) {
-            binding.textInputDelivery.setError("Delivery fee is too low");
+            binding.textInputDelivery.setError("Delivery fee is too low.");
             return false;
         } else {
             binding.textInputDelivery.setError(null);

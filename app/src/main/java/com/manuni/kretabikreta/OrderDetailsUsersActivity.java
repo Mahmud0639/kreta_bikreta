@@ -1,6 +1,8 @@
 package com.manuni.kretabikreta;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
@@ -120,7 +122,11 @@ public class OrderDetailsUsersActivity extends AppCompatActivity {
                             e.printStackTrace();
                         }
                     }
+                    LinearLayoutManager linearLayoutManager = new LinearLayoutManager(OrderDetailsUsersActivity.this);
+                    DividerItemDecoration itemDecoration = new DividerItemDecoration(OrderDetailsUsersActivity.this,linearLayoutManager.getOrientation());
                     adapterOrderedItems = new AdapterOrderedItems(OrderDetailsUsersActivity.this, modelOrderedItems);
+
+                    binding.orderedItemsRV.addItemDecoration(itemDecoration);
                     try {
                         binding.orderedItemsRV.setAdapter(adapterOrderedItems);
                     } catch (Exception e) {

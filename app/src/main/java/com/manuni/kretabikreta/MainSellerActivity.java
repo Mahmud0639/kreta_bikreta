@@ -3,6 +3,8 @@ package com.manuni.kretabikreta;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.PopupMenu;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
@@ -153,6 +155,7 @@ public class MainSellerActivity extends AppCompatActivity {
         popupMenu.getMenu().add("Settings");
         popupMenu.getMenu().add("Help Them");
         popupMenu.getMenu().add("Send Feedback");
+        popupMenu.getMenu().add("Update");
         popupMenu.getMenu().add("Logout");
 
         popupMenu.setOnMenuItemClickListener(item -> {
@@ -204,6 +207,12 @@ public class MainSellerActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainSellerActivity.this,SettingsActivity.class);
                 try {
                     startActivity(intent);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }else if (item.getTitle()=="Update"){
+                try {
+                    startActivity(new Intent(MainSellerActivity.this,UpdateActivity.class));
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -426,10 +435,15 @@ public class MainSellerActivity extends AppCompatActivity {
                     }
 
                 }
+
+
                 binding.itemsFoundTV.setText(" ("+list.size()+" items found)");
+
                 productSellerAdapter = new ProductSellerAdapter(MainSellerActivity.this,list);
+
                 try {
                     binding.productRV.setAdapter(productSellerAdapter);
+
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -606,9 +620,9 @@ public class MainSellerActivity extends AppCompatActivity {
                     binding.shopName.setText(shopName);
                     binding.email.setText(email);
                     try {
-                        Picasso.get().load(profileImage).placeholder(R.drawable.ic_person_gray).into(binding.profileIV);
+                        Picasso.get().load(profileImage).placeholder(R.drawable.ic_store_gray).into(binding.profileIV);
                     } catch (Exception e) {
-                        binding.profileIV.setImageResource(R.drawable.ic_baseline_store_gray);
+                        binding.profileIV.setImageResource(R.drawable.ic_store_gray);
                         e.printStackTrace();
                     }
                 }

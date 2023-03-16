@@ -115,10 +115,9 @@ public class ShopReviewActivity extends AppCompatActivity {
 
                 binding.shopNameTV.setText(shopName);
                 try {
-                    Picasso.get().load(profileImage).placeholder(R.drawable.ic_store_gray).into(binding.shopIV);
+                    Picasso.get().load(profileImage).placeholder(R.drawable.ic_store_white_another).into(binding.shopIV);
                 } catch (Exception e) {
-                    Picasso.get().load(R.drawable.ic_store_gray).into(binding.shopIV);
-                    e.printStackTrace();
+                    binding.shopIV.setImageResource(R.drawable.ic_store_white_another);
                 }
             }
 

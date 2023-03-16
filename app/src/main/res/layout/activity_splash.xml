@@ -8,8 +8,8 @@
 
     <ImageView
         android:id="@+id/splashIV"
-        android:layout_width="@dimen/_130mdp"
-        android:layout_height="@dimen/_130mdp"
+        android:layout_width="@dimen/_150mdp"
+        android:layout_height="@dimen/_150mdp"
         android:layout_centerInParent="true"
         android:src="@drawable/buy_sell" />
 
@@ -23,7 +23,8 @@
         android:text="@string/app_name"
         android:textColor="@color/white"
         android:textSize="@dimen/_20font_mdp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:visibility="visible" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -32,8 +33,8 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/_5mdp"
         android:text="হাতের নাগালে সবকিছু"
-        android:textStyle="bold"
         android:textColor="@color/white"
-        android:textSize="@dimen/_15font_mdp" />
+        android:textSize="@dimen/_15font_mdp"
+        android:textStyle="bold" />
 
 </RelativeLayout>

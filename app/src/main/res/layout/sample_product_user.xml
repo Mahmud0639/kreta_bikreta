@@ -14,8 +14,9 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="@dimen/_3mdp"
-            android:background="@drawable/border_box">
+            android:padding="@dimen/_1mdp"
+            android:background="@color/white"
+          >
 
             <ImageView
                 android:id="@+id/productIconIV"
@@ -64,7 +65,7 @@
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
                     android:maxLines="1"
-                    android:text="@string/title"
+                    android:text="@string/fetching"
                     android:textColor="@color/black"
                     android:textStyle="bold" />
 
@@ -143,12 +144,5 @@
         </RelativeLayout>
 
     </androidx.cardview.widget.CardView>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_1mdp"
-        android:background="#DFDEDE"
-        android:layout_below="@id/cardView"
-        />
 
 </RelativeLayout>
