@@ -23,6 +23,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.manuni.kretabikreta.databinding.ActivityMainUserBinding;
 import com.squareup.picasso.Picasso;
@@ -198,11 +199,11 @@ public class MainUserActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                    try {
-                        categoryDialog();
-                    } catch (Exception e) {
-                        Toast.makeText(MainUserActivity.this, "Please wait... ", Toast.LENGTH_SHORT).show();
-                    }
+                try {
+                    categoryDialog();
+                } catch (Exception e) {
+                    Toast.makeText(MainUserActivity.this, "Please wait... ", Toast.LENGTH_SHORT).show();
+                }
 
 
             }
@@ -259,14 +260,14 @@ public class MainUserActivity extends AppCompatActivity {
             public void onDataChange(DataSnapshot snapshot) {
                 if (snapshot.exists()){
                     for (DataSnapshot dataSnapshot: snapshot.getChildren()){
-                         messTitle = ""+dataSnapshot.child("title").getValue();
-                         messBody = ""+dataSnapshot.child("body").getValue();
+                        messTitle = ""+dataSnapshot.child("title").getValue();
+                        messBody = ""+dataSnapshot.child("body").getValue();
 
-                       if (messTitle.equals("") && messBody.equals("")){
-                           binding.circlePoorImage.setVisibility(View.GONE);
-                       }else {
-                           binding.circlePoorImage.setVisibility(View.VISIBLE);
-                       }
+                        if (messTitle.equals("") && messBody.equals("")){
+                            binding.circlePoorImage.setVisibility(View.GONE);
+                        }else {
+                            binding.circlePoorImage.setVisibility(View.VISIBLE);
+                        }
 
                     }
                 }
@@ -321,8 +322,8 @@ public class MainUserActivity extends AppCompatActivity {
                                 areaList.add(area);
                             }
 
-                           // Toast.makeText(MainUserActivity.this, ""+myState, Toast.LENGTH_SHORT).show();
-                           // Toast.makeText(MainUserActivity.this, ""+area, Toast.LENGTH_SHORT).show();
+                            // Toast.makeText(MainUserActivity.this, ""+myState, Toast.LENGTH_SHORT).show();
+                            // Toast.makeText(MainUserActivity.this, ""+area, Toast.LENGTH_SHORT).show();
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
@@ -566,6 +567,8 @@ public class MainUserActivity extends AppCompatActivity {
         modelShopArrayList = new ArrayList<>();
 
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Users");
+
+
         reference.orderByChild("accountType").equalTo("Seller").addValueEventListener(new ValueEventListener() {
             @SuppressLint("SetTextI18n")
             @Override
@@ -599,7 +602,7 @@ public class MainUserActivity extends AppCompatActivity {
                             assert shopOpen != null;
                             if (shopOpen.equals("true")) {
                                 try {
-                                    modelShopArrayList.add(modelShop);
+                                    modelShopArrayList.add(0,modelShop);
                                 } catch (Exception e) {
                                     e.printStackTrace();
                                 }
@@ -610,6 +613,8 @@ public class MainUserActivity extends AppCompatActivity {
 
                 }
                 binding.shopsFoundTV.setText("("+modelShopArrayList.size()+" shops available)");
+                binding.shopsFoundTV.setVisibility(View.VISIBLE);
+                binding.filterTxt.setVisibility(View.VISIBLE);
                 adapterShop = new AdapterShop(MainUserActivity.this,modelShopArrayList);
                 try {
                     binding.shopRV.setAdapter(adapterShop);
@@ -654,11 +659,15 @@ public class MainUserActivity extends AppCompatActivity {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setTitle("Shop Area").setItems(dataArea, (dialogInterface, i) -> {
                 String shopArea = dataArea[i];//ekhane kono category select kora hole seta ei variable er moddhe chole ashbe
-                binding.filterTxt.setVisibility(View.GONE);
-                binding.myArea.setText(shopArea);
+               /* binding.filterTxt.setVisibility(View.GONE);
+                binding.myArea.setText(shopArea);*/
 
                 // binding.myArea.setVisibility(View.VISIBLE);
-                loadAllAreaShops(shopArea);
+                try {
+                    loadAllAreaShops(shopArea);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
 
 
             }).show();
@@ -706,9 +715,15 @@ public class MainUserActivity extends AppCompatActivity {
                         }
                     }
                 }
+                binding.filterTxt.setVisibility(View.VISIBLE);
+                binding.filterTxt.setText("Showing All");
+                binding.myArea.setText(shopAreaHere);
 
+                binding.myArea.setVisibility(View.VISIBLE);
+                binding.shopsFoundTV.setVisibility(View.VISIBLE);
 
                 binding.shopsFoundTV.setText("("+modelShopArrayList.size()+" shops found)");
+
                 adapterShop = new AdapterShop(MainUserActivity.this,modelShopArrayList);
                 try {
                     binding.shopRV.setAdapter(adapterShop);
@@ -732,7 +747,7 @@ public class MainUserActivity extends AppCompatActivity {
             // Toast.makeText(this, ""+category, Toast.LENGTH_SHORT).show();
             String areaTxt;
             areaTxt = binding.myArea.getText().toString().trim();
-            binding.myArea.setVisibility(View.VISIBLE);
+            //binding.myArea.setVisibility(View.VISIBLE);
 
 
             //Toast.makeText(this, ""+areaTxt, Toast.LENGTH_SHORT).show();
@@ -740,6 +755,7 @@ public class MainUserActivity extends AppCompatActivity {
                 binding.filterTxt.setVisibility(View.VISIBLE);
                 binding.filterTxt.setText("Showing All");
                 binding.myArea.setVisibility(View.GONE);
+                binding.shopsFoundTV.setVisibility(View.VISIBLE);
                 try {
                     loadShops(state);
                 } catch (Exception e) {
@@ -750,6 +766,8 @@ public class MainUserActivity extends AppCompatActivity {
             }*/else{
                 binding.filterTxt.setVisibility(View.VISIBLE);
                 binding.filterTxt.setText(category);
+                binding.myArea.setVisibility(View.VISIBLE);
+                binding.shopsFoundTV.setVisibility(View.VISIBLE);
 
                 try {
                     loadAllShops(category,areaTxt);
@@ -796,16 +814,24 @@ public class MainUserActivity extends AppCompatActivity {
                             try {
                                 modelShopArrayList.add(modelShop);
                                 binding.myArea.setVisibility(View.VISIBLE);
+                                binding.filterTxt.setVisibility(View.VISIBLE);
+                                binding.shopsFoundTV.setVisibility(View.VISIBLE);
                             } catch (Exception e) {
                                 e.printStackTrace();
                             }
                         }
                     }else if (selected.equals(shopCat)&&areaSelected.equals("")){
 
-                        loadAllShops(selected);
+                        try {
+                            loadAllShops(selected);
+
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
 
                     }
                 }
+
 
                 binding.shopsFoundTV.setText("("+modelShopArrayList.size()+" shops found)");
                 adapterShop = new AdapterShop(MainUserActivity.this,modelShopArrayList);
@@ -894,10 +920,16 @@ public class MainUserActivity extends AppCompatActivity {
 
                     if (selected.equals(shopCat) && myDivision.equals(state)){
                         ModelShop modelShop = dataSnapshot.getValue(ModelShop.class);
-                        modelShopArrayList.add(modelShop);
+                        try {
+                            modelShopArrayList.add(modelShop);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
                     }
                 }
-
+                binding.filterTxt.setVisibility(View.VISIBLE);
+                binding.shopsFoundTV.setVisibility(View.VISIBLE);
+                binding.myArea.setVisibility(View.GONE);
                 binding.shopsFoundTV.setText("("+modelShopArrayList.size()+" shops found)");
                 adapterShop = new AdapterShop(MainUserActivity.this,modelShopArrayList);
                 binding.shopRV.setAdapter(adapterShop);

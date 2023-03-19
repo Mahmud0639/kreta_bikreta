@@ -643,9 +643,9 @@ public class ShopDetailsActivity extends AppCompatActivity {
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
-                   // Toast.makeText(ShopDetailsActivity.this, "Notification sent", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ShopDetailsActivity.this, "We received your order. Thank you!!", Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(ShopDetailsActivity.this, "Failed", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ShopDetailsActivity.this, "We received your order. Thank you!!", Toast.LENGTH_SHORT).show();
                 }
             }
 

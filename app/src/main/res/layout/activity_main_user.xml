@@ -234,17 +234,18 @@
         android:layout_below="@id/searchBar"
         android:layout_toEndOf="@id/shopsFoundTV"
         android:padding="@dimen/_3mdp"
+        android:textColor="#919090"
         android:text="" />
 
     <TextView
         android:id="@+id/shopsFoundTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text=""
-        android:layout_toEndOf="@id/filterTxt"
         android:layout_below="@id/searchBar"
+        android:layout_toEndOf="@id/filterTxt"
         android:padding="@dimen/_3mdp"
-        android:textColor="#919090"/>
+        android:text=""
+        android:textColor="#919090" />
 
     <ImageButton
         android:id="@+id/filterProductBtn"

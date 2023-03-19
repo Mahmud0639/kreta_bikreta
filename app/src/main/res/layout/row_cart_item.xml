@@ -19,8 +19,8 @@
         android:layout_marginStart="@dimen/_3mdp"
         android:layout_toEndOf="@id/productImage"
         android:ellipsize="end"
-        android:maxLines="1"
         android:maxWidth="@dimen/_80mdp"
+        android:maxLines="1"
         android:text="CCA CSA One Plus Earphone"
         android:textColor="@color/black" />
 
@@ -29,8 +29,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="#919090"
+        android:ellipsize="marquee"
         android:layout_toEndOf="@id/itemTitleTV"
-        android:text="" />
+        android:text=""
+        android:singleLine="true" />
 
     <TextView
         android:id="@+id/itemPriceTV"

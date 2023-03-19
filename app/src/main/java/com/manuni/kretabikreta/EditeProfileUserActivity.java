@@ -254,9 +254,9 @@ public class EditeProfileUserActivity extends AppCompatActivity implements Locat
 
 
                     try {
-                        Picasso.get().load(profileImage).placeholder(R.drawable.ic_person_gray).into(binding.profileIVShow);
+                        Picasso.get().load(profileImage).placeholder(R.drawable.ic_person).into(binding.profileIVShow);
                     } catch (Exception e) {
-                        binding.profileIVShow.setImageResource(R.drawable.ic_person_gray);
+                        binding.profileIVShow.setImageResource(R.drawable.ic_person);
                         e.printStackTrace();
                     }
 

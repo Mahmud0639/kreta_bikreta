@@ -6,6 +6,17 @@
     android:background="@color/background_theme"
     tools:context=".SplashActivity">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/shopperName"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="@dimen/_5mdp"
+        android:text="Everything in your hand"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_13font_mdp"
+        android:textStyle="bold" />
+
     <ImageView
         android:id="@+id/splashIV"
         android:layout_width="@dimen/_150mdp"
@@ -22,19 +33,10 @@
         android:layout_marginTop="@dimen/_10mdp"
         android:text="@string/app_name"
         android:textColor="@color/white"
-        android:textSize="@dimen/_20font_mdp"
+        android:textSize="@dimen/_35font_mdp"
         android:textStyle="bold"
         android:visibility="visible" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/shopperName"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/_5mdp"
-        android:text="হাতের নাগালে সবকিছু"
-        android:textColor="@color/white"
-        android:textSize="@dimen/_15font_mdp"
-        android:textStyle="bold" />
+
 
 </RelativeLayout>

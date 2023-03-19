@@ -290,9 +290,9 @@ public class EditProfileSellerActivity extends AppCompatActivity implements Loca
                     }
 
                     try {
-                        Picasso.get().load(profileImage).placeholder(R.drawable.ic_person_gray).into(binding.profileIVShow);
+                        Picasso.get().load(profileImage).placeholder(R.drawable.impl2).into(binding.profileIVShow);
                     } catch (Exception e) {
-                        binding.profileIVShow.setImageResource(R.drawable.ic_person_gray);
+                        binding.profileIVShow.setImageResource(R.drawable.impl2);
                         e.printStackTrace();
                     }
 

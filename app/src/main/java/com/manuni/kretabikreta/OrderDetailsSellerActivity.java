@@ -137,7 +137,7 @@ public class OrderDetailsSellerActivity extends AppCompatActivity {
             @Override
             public void onSuccess(Void unused) {
                 String message = "Your order is "+setSelectedOption;
-                Toast.makeText(OrderDetailsSellerActivity.this, message, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(OrderDetailsSellerActivity.this, message, Toast.LENGTH_SHORT).show();
 
                 try {
                     prepareNotification(orderId,""+message);
@@ -403,17 +403,9 @@ public class OrderDetailsSellerActivity extends AppCompatActivity {
 
                     Toast.makeText(OrderDetailsSellerActivity.this, "Notification sent.", Toast.LENGTH_SHORT).show();
 
-//                    Intent totalCostIntent = new Intent(OrderDetailsSellerActivity.this,TotalCostActivity.class);
-//                    totalCostIntent.putExtra("orderToSeller",orderTo);
-//                    try {
-//                        startActivity(totalCostIntent);
-//                    } catch (Exception e) {
-//                        e.printStackTrace();
-//                    }
-
 
                 } else {
-                    Toast.makeText(OrderDetailsSellerActivity.this, "Failed", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(OrderDetailsSellerActivity.this, "Failed.", Toast.LENGTH_SHORT).show();
                 }
             }
 
