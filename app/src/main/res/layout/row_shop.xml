@@ -32,7 +32,8 @@
                 android:layout_width="@dimen/_15mdp"
                 android:layout_height="@dimen/_15mdp"
                 android:layout_marginTop="@dimen/_5mdp"
-                android:src="@drawable/shape_circle_03" />
+                android:src="@drawable/shape_circle_03"
+                android:visibility="gone" />
 
             <ImageView
                 android:id="@+id/nextIV"

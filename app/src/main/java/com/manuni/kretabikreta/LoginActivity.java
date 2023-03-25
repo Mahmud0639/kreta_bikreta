@@ -1,27 +1,45 @@
 package com.manuni.kretabikreta;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
+import android.graphics.drawable.ColorDrawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Patterns;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.Toast;
 
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.manuni.kretabikreta.databinding.ActivityLoginBinding;
+import com.manuni.kretabikreta.databinding.DialogSigninBinding;
 
 import java.util.HashMap;
 import java.util.Objects;
@@ -35,6 +53,9 @@ public class LoginActivity extends AppCompatActivity {
 
     private DatabaseReference dbRef;
 
+    public static final int RC_SIGN_IN = 100;
+    GoogleSignInClient mGoogleSignInClient;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,109 +63,68 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
 
-        String pas = binding.passET.getText().toString().trim();
-        String em = binding.emailET.getText().toString().trim();
-        SharedPreferences preferences = getSharedPreferences(RegisterUserActivity.FILE_NAME,MODE_PRIVATE);
-        String myPassword = preferences.getString(RegisterUserActivity.PASSWORD_KEY,pas);
-        String myEmailAddress = preferences.getString(RegisterUserActivity.EMAIL_ADDRESS,em);
 
-        binding.emailET.setText(myEmailAddress);
+        GoogleSignInOptions googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestEmail()
+                .build();
+        mGoogleSignInClient = GoogleSignIn.getClient(LoginActivity.this,googleSignInOptions);
 
-        binding.passET.setText(myPassword);
+
 
         dbRef = FirebaseDatabase.getInstance().getReference().child("Users");
 
 
         dialog = new ProgressDialog(LoginActivity.this);
         auth = FirebaseAuth.getInstance();
-        binding.notHaveAccountTV.setOnClickListener(view -> startActivity(new Intent(LoginActivity.this,RegisterUserActivity.class)));
 
-        //binding.forgotTV.setOnClickListener(view -> startActivity(new Intent(LoginActivity.this,ForgotPasswordActivity.class)));
 
-        binding.emailET.addTextChangedListener(new TextWatcher() {
+        binding.googleSignInBtn.setOnClickListener(new View.OnClickListener() {
+
+            @SuppressLint("ResourceAsColor")
             @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            public void onClick(View view) {
 
-            }
+                DialogSigninBinding dialogSigninBinding = DialogSigninBinding.inflate(LayoutInflater.from(getApplicationContext()));
+                AlertDialog alertDialog = new AlertDialog.Builder(LoginActivity.this)
+                        .setView(dialogSigninBinding.getRoot())
+                        .create();
 
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                if (!Patterns.EMAIL_ADDRESS.matcher(charSequence).matches()){
-                    binding.textInputEmail.setHelperText("Email pattern not yet matched.");
-                    binding.textInputEmail.setHelperTextColor(ColorStateList.valueOf(getResources().getColor(R.color.red_deep)));
-                }else {
-                    binding.textInputEmail.setHelperText("Email pattern matched!");
-                    binding.textInputEmail.setHelperTextColor(ColorStateList.valueOf(getResources().getColor(R.color.colorGreen)));
-                }
-            }
+               // alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.R.color.transparent));
+                //alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
 
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
-        });
-
-        binding.passET.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                if (charSequence.length()>=6){
-                    Pattern pattern = Pattern.compile("[^a-zA-Z0-9]");
-                    Matcher matcher = pattern.matcher(charSequence);
-                    boolean isPwdContains = matcher.find();
-                    if (isPwdContains){
-                        binding.textInputPass.setHelperText("Strong Password");
-                        binding.textInputPass.setHelperTextColor(ColorStateList.valueOf(getResources().getColor(R.color.colorGreen)));
-                        binding.textInputPass.setError("");
-
-                    }else {
-                        binding.textInputPass.setHelperText("Weak Password.Include minimum 1 special char.");
-                        binding.textInputPass.setHelperTextColor(ColorStateList.valueOf(getResources().getColor(R.color.blue)));
-                        // binding.textInputPass.setError("");
-
+                dialogSigninBinding.userLogin.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.setMessage("Please wait...");
+                        dialog.setCancelable(false);
+                        dialog.setCanceledOnTouchOutside(false);
+                        dialog.show();
+                        Intent signInIntent = mGoogleSignInClient.getSignInIntent();
+                        startActivityForResult(signInIntent,RC_SIGN_IN);
                     }
-                } else{
-                    binding.textInputPass.setHelperText("Enter Minimum 6 char.");
-                    binding.textInputPass.setHelperTextColor(ColorStateList.valueOf(getResources().getColor(R.color.red_deep)));
-                    binding.textInputPass.setError("");
+                });
 
+                dialogSigninBinding.sellerLogin.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        startActivity(new Intent(LoginActivity.this,SellerLoginActivity.class));
+                    }
+                });
+
+                if (alertDialog.getWindow() != null){
+                    alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
                 }
-            }
 
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
-        });
-
-        binding.loginBtn.setOnClickListener(view -> {
-
-            ConnectivityManager manager = (ConnectivityManager)getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
-            NetworkInfo wifi = manager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
-            NetworkInfo mobile = manager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
-
-            if (wifi.isConnected()){
                 try {
-                    login();
+                    alertDialog.show();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-            }else if (mobile.isConnected()){
-                try {
-                    login();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }else {
-                Toast.makeText(LoginActivity.this, "No internet", Toast.LENGTH_SHORT).show();
+
+
             }
-
         });
-
 
     }
 
@@ -156,40 +136,16 @@ public class LoginActivity extends AppCompatActivity {
         dialog.setCancelable(false);
         dialog.setMessage("Logging in...");
 
-
-
-        if (!validateEmail() | !validatePassword()){
-            return;
-        }
-//
-//        email = binding.emailET.getText().toString().trim();
-//        password = binding.passET.getText().toString().trim();
-//
-//        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
-//            if (email.isEmpty()){
-//                binding.textInputEmail.setError("Empty");
-//            }else {
-//                binding.textInputEmail.setError(null);
-//            }
-//            //Toast.makeText(this, "Invalid email address!", Toast.LENGTH_SHORT).show();
-//            binding.textInputEmail.setError("Field can't be empty");
-//            return;
-//        }else if (password.length()<6){
-//           // Toast.makeText(this, "Password should be at least 6 characters!", Toast.LENGTH_SHORT).show();
-//            binding.textInputPass.setError("Password should be at least 6 characters");
-//            return;
-//        }else {
         dialog.show();
-        binding.textInputEmail.setError(null);
-        binding.textInputPass.setError(null);
+
         auth.signInWithEmailAndPassword(email,password).addOnSuccessListener(authResult -> {
             dialog.dismiss();
             makeMeOnline();
         }).addOnFailureListener(e -> {
             dialog.dismiss();
-            Toast.makeText(LoginActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+
         });
-        //}
+
 
 
 
@@ -313,52 +269,60 @@ public class LoginActivity extends AppCompatActivity {
         finishAffinity();
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
 
-    private boolean validateEmail(){
-
-
-        email = binding.emailET.getText().toString().trim();
-
-        if (email.isEmpty()){
-            binding.textInputEmail.setError("Field can't be empty.");
-            return false;
-        }else  if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
-            binding.textInputEmail.setError("Invalid Email Pattern");
-            return false;
-        } else {
-            binding.textInputEmail.setError(null);
-            binding.textInputEmail.setErrorEnabled(false);
-            return true;
-        }
-
-
-    }
-    private boolean validatePassword(){
-        password = binding.passET.getText().toString().trim();
-        if (password.length()>=6){
-            Pattern pattern = Pattern.compile("[^a-zA-Z0-9]");
-            Matcher matcher = pattern.matcher(password);
-            boolean isPwdContains = matcher.find();
-            if (isPwdContains){
-                binding.textInputPass.setHelperText("Strong Password");
-                binding.textInputPass.setHelperTextColor(ColorStateList.valueOf(getResources().getColor(R.color.colorGreen)));
-                binding.textInputPass.setError("");
-                return true;
-            }else {
-                binding.textInputPass.setHelperText("Weak Password.Include minimum 1 special char.");
-                binding.textInputPass.setHelperTextColor(ColorStateList.valueOf(getResources().getColor(R.color.blue)));
-                //binding.textInputPass.setError("");
-                return true;
+        if (requestCode==RC_SIGN_IN){
+            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
+            try {
+                GoogleSignInAccount account = task.getResult(ApiException.class);
+                firebaseAuthWithGoogle(account);
+            } catch (ApiException e) {
+                dialog.dismiss();
+                Toast.makeText(this, "Not possible to reach your destination. It can be connection issue.", Toast.LENGTH_SHORT).show();
+                e.printStackTrace();
             }
-        }else if (password.isEmpty()){
-            binding.textInputPass.setHelperText("Field can't be empty.");
-            binding.textInputPass.setHelperTextColor(ColorStateList.valueOf(getResources().getColor(R.color.red_deep)));
-            return false;
-        } else{
-            binding.textInputPass.setHelperText("Enter Minimum 6 char.");
-            binding.textInputPass.setHelperTextColor(ColorStateList.valueOf(getResources().getColor(R.color.red_deep)));
-            binding.textInputPass.setError("");
-            return false;
         }
+
+
     }
+
+    private void firebaseAuthWithGoogle(GoogleSignInAccount acc){
+        dialog.dismiss();
+        AuthCredential credential = GoogleAuthProvider.getCredential(acc.getIdToken(),null);
+        auth.signInWithCredential(credential).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(Task<AuthResult> task) {
+                if (task.isSuccessful()){
+                    FirebaseUser user = auth.getCurrentUser();
+
+
+                    if (task.getResult().getAdditionalUserInfo().isNewUser()){
+                        String email = user.getEmail();
+                        String uid = user.getUid();
+
+
+                        startActivity(new Intent(LoginActivity.this,RegisterUserActivity.class));
+
+                    }else {
+                        makeMeOnline();
+                        startActivity(new Intent(LoginActivity.this, MainUserActivity.class));
+                        finish();
+                    }
+
+
+
+                }
+
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(Exception e) {
+
+            }
+        });
+    }
+
+
 }

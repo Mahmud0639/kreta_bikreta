@@ -146,7 +146,6 @@ public class EditeProfileUserActivity extends AppCompatActivity implements Locat
     private String name,phone,country,state,city,address;
 
     private void inputData() {
-        name = binding.fullNameET.getText().toString().trim();
         phone = binding.phoneET.getText().toString().trim();
         country = binding.countryET.getText().toString().trim();
         state = binding.stateET.getText().toString().trim();
@@ -167,7 +166,6 @@ public class EditeProfileUserActivity extends AppCompatActivity implements Locat
             //update without image
 
             HashMap<String,Object> hashMap = new HashMap<>();
-            hashMap.put("fullName",""+name);
             hashMap.put("phoneNumber",""+phone);
             hashMap.put("countryName",""+country);
             hashMap.put("state",""+state);
@@ -197,7 +195,6 @@ public class EditeProfileUserActivity extends AppCompatActivity implements Locat
 
                 if (uriTask.isSuccessful()){
                     HashMap<String,Object> hashMap = new HashMap<>();
-                    hashMap.put("fullName",""+name);
                     hashMap.put("phoneNumber",""+phone);
                     hashMap.put("countryName",""+country);
                     hashMap.put("state",""+state);
@@ -237,14 +234,13 @@ public class EditeProfileUserActivity extends AppCompatActivity implements Locat
                     String email = ""+dataSnapshot.child("email").getValue();
                     latitude = Double.parseDouble(""+dataSnapshot.child("latitude").getValue());
                     longitude = Double.parseDouble(""+dataSnapshot.child("longitude").getValue());
-                    String name = ""+dataSnapshot.child("fullName").getValue();
                     String online = ""+dataSnapshot.child("online").getValue();
                     String phone = ""+dataSnapshot.child("phoneNumber").getValue();
                     String profileImage = ""+dataSnapshot.child("profileImage").getValue();
                     String timestamp = ""+dataSnapshot.child("timestamp").getValue();
                     String uid = ""+dataSnapshot.child("uid").getValue();
 
-                    binding.fullNameET.setText(name);
+
                     binding.phoneET.setText(phone);
                     binding.countryET.setText(country);
                     binding.stateET.setText(state);

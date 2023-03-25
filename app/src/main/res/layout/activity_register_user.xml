@@ -32,22 +32,13 @@
                 android:textSize="@dimen/_15font_mdp"
                 android:textStyle="bold" />
 
-            <ImageButton
-                android:id="@+id/gpsBtn"
-                android:layout_width="@dimen/_20mdp"
-                android:layout_height="@dimen/_20mdp"
-                android:layout_alignParentEnd="true"
-                android:layout_marginTop="@dimen/_5mdp"
-                android:background="@drawable/ic_gps_white" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Click Here"
-                android:textColor="@color/white"
-                android:textSize="@dimen/_11font_mdp"
-                android:layout_below="@id/gpsBtn"
-                android:layout_alignParentEnd="true"
-                android:textStyle="bold"/>
+            <!--    <ImageButton
+                    android:id="@+id/gpsBtn"
+                    android:layout_width="@dimen/_20mdp"
+                    android:layout_height="@dimen/_20mdp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="@dimen/_5mdp"
+                    android:background="@drawable/ic_gps_white" />-->
 
 
         </RelativeLayout>
@@ -75,7 +66,7 @@
                 android:layout_width="@dimen/_80mdp"
                 android:layout_height="@dimen/_80mdp"
                 android:layout_centerHorizontal="true"
-                android:src="@drawable/ic_person"
+                android:src="@drawable/ic_person_gray"
                 app:civ_border_color="@color/colorGray02"
                 app:civ_border_width="@dimen/_2mdp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -95,46 +86,46 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/cons"
-            android:id="@+id/textInputFullName"
-            android:layout_marginTop="@dimen/_5mdp"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            app:boxBackgroundMode="outline"
-            app:endIconMode="clear_text"
-            app:errorEnabled="true"
-            app:helperText="Your full name"
-            app:helperTextTextColor="#919090"
-            app:hintEnabled="false">
+        <!-- <com.google.android.material.textfield.TextInputLayout
+             android:id="@+id/textInputFullName"
+             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:layout_below="@id/cons"
+             android:layout_marginTop="@dimen/_5mdp"
+             app:boxBackgroundMode="outline"
+             app:endIconMode="clear_text"
+             app:errorEnabled="true"
+             app:helperText="Your full name"
+             app:helperTextTextColor="#919090"
+             app:hintEnabled="false">
 
-            <EditText
-                android:id="@+id/fullNameET"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/cons"
-                android:layout_marginStart="@dimen/_5mdp"
-                android:layout_marginEnd="@dimen/_5mdp"
-                android:layout_marginBottom="@dimen/_5mdp"
-                android:background="@drawable/shape_rect_02"
-                android:drawableStart="@drawable/ic_person_gray"
-                android:drawablePadding="@dimen/_5mdp"
-                android:hint="@string/full_name"
-                android:inputType="text|textCapWords"
-                android:padding="@dimen/_10mdp"
-                android:textColor="@color/black"
-                android:textColorHint="#919090"
-                tools:ignore="TextFields" />
-        </com.google.android.material.textfield.TextInputLayout>
+             <EditText
+                 android:id="@+id/fullNameET"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:layout_below="@id/cons"
+                 android:layout_marginStart="@dimen/_5mdp"
+                 android:layout_marginEnd="@dimen/_5mdp"
+                 android:layout_marginBottom="@dimen/_5mdp"
+                 android:background="@drawable/shape_rect_02"
+                 android:drawableStart="@drawable/ic_person_gray"
+                 android:drawablePadding="@dimen/_5mdp"
+                 android:hint="@string/full_name"
+                 android:inputType="text|textCapWords"
+                 android:padding="@dimen/_10mdp"
+                 android:textColor="@color/black"
+                 android:textColorHint="#919090"
+                 tools:ignore="TextFields" />
+         </com.google.android.material.textfield.TextInputLayout>-->
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/textInputPhone"
-            android:layout_below="@id/textInputFullName"
             android:layout_marginTop="@dimen/_5mdp"
             app:endIconMode="clear_text"
             app:errorEnabled="true"
+            android:layout_below="@id/cons"
             app:hintEnabled="false"
             app:boxBackgroundMode="outline"
             app:helperTextTextColor="#919090"
@@ -159,13 +150,32 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/gpsBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textInputPhone"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/_5mdp"
+            android:layout_marginBottom="@dimen/_5mdp"
+            android:background="@drawable/location_btn_style"
+            android:drawableStart="@drawable/ic_location_gray"
+            android:drawablePadding="@dimen/_5mdp"
+            android:padding="@dimen/_8mdp"
+            android:text="Press here to set Location"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_13font_mdp"
+            android:textStyle="bold" />
+
+
 
 
         <LinearLayout
             android:id="@+id/linearLayoutLocation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/textInputPhone"
+            android:layout_below="@id/gpsBtn"
             android:layout_margin="@dimen/_5mdp"
             android:orientation="horizontal">
 
@@ -237,18 +247,20 @@
             android:padding="@dimen/_10mdp" />
 
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputEmail"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/textInputEmail"
             android:layout_below="@id/completeAddressET"
             android:layout_marginTop="@dimen/_5mdp"
-            app:endIconMode="clear_text"
-            app:errorEnabled="true"
-            app:hintEnabled="false"
             app:boxBackgroundMode="outline"
+            app:endIconMode="clear_text"
+            android:visibility="gone"
+            app:errorEnabled="true"
+            app:helperText="example@gmail.com"
             app:helperTextTextColor="#919090"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            app:helperText="example@gmail.com">
+            app:hintEnabled="false">
+
             <EditText
                 android:id="@+id/emailEt"
                 android:layout_width="match_parent"
@@ -263,7 +275,8 @@
                 android:inputType="textEmailAddress"
                 android:padding="@dimen/_10mdp"
                 android:textColor="@color/black"
-                android:textColorHint="#919090" />
+                android:textColorHint="#919090"
+                android:visibility="gone" />
 
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -275,6 +288,7 @@
             android:layout_below="@id/textInputEmail"
             android:layout_marginTop="@dimen/_5mdp"
             app:passwordToggleEnabled="true"
+            android:visibility="gone"
             app:errorEnabled="true"
             app:helperTextTextColor="#919090"
             app:helperText="**********"
@@ -288,6 +302,7 @@
                 android:layout_marginEnd="@dimen/_5mdp"
                 android:textColor="@color/black"
                 android:textColorHint="#919090"
+                android:visibility="gone"
                 android:layout_marginBottom="@dimen/_5mdp"
                 android:background="@drawable/shape_rect_02"
                 android:drawableStart="@drawable/ic_lock_gray"
@@ -306,6 +321,7 @@
             android:layout_marginTop="@dimen/_5mdp"
             app:passwordToggleEnabled="true"
             app:errorEnabled="true"
+            android:visibility="gone"
             app:helperText="**********"
             app:helperTextTextColor="#919090"
             app:passwordToggleTint="#919090"
@@ -319,6 +335,7 @@
                 android:layout_marginBottom="@dimen/_5mdp"
                 android:textColor="@color/black"
                 android:textColorHint="#919090"
+                android:visibility="gone"
                 android:background="@drawable/shape_rect_02"
                 android:drawableStart="@drawable/ic_lock_gray"
                 android:drawablePadding="@dimen/_5mdp"
@@ -327,7 +344,6 @@
                 android:padding="@dimen/_10mdp" />
 
         </com.google.android.material.textfield.TextInputLayout>
-
 
 
         <CheckBox
@@ -340,6 +356,7 @@
             android:drawableStart="@drawable/check_drawable_bg"
             android:drawablePadding="@dimen/_5mdp"
             android:text="Save Password"
+            android:visibility="gone"
             android:textColor="@color/black" />
 
 
@@ -351,22 +368,13 @@
             android:layout_below="@id/savePassword"
             android:layout_centerHorizontal="true"
             android:minWidth="@dimen/_120mdp"
-            android:text="@string/register"
+            android:text="Next"
             android:textAllCaps="false"
             android:textColor="@color/white" />
 
-        <TextView
-            android:id="@+id/registerAsSellerTV"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/registerBtnUser"
-            android:layout_centerHorizontal="true"
-            android:layout_marginStart="@dimen/_5mdp"
-            android:layout_marginTop="@dimen/_30mdp"
-            android:layout_marginEnd="@dimen/_5mdp"
-            android:layout_marginBottom="@dimen/_15mdp"
-            android:text="@string/are_you_a_seller_register_as_seller"
-            android:textColor="#919090" />
+
+
+
 
 
     </RelativeLayout>

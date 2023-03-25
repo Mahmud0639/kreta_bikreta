@@ -209,7 +209,7 @@ public class SplashActivity extends AppCompatActivity {
                         try {
                             startActivity(new Intent(SplashActivity.this,MainUserActivity.class));
                         } catch (Exception e) {
-                            e.printStackTrace();
+                             e.printStackTrace();
                         }
                         finish();
                     }

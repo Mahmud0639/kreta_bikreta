@@ -94,7 +94,7 @@
 -->
 
 
-            <EditText
+       <!--     <EditText
                 android:id="@+id/fullNameET"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -110,13 +110,13 @@
                 android:inputType="textPersonName|textCapWords"
                 android:padding="@dimen/_7mdp"
                 android:textColor="@color/black"
-                android:textColorHint="#919090" />
+                android:textColorHint="#919090" />-->
 
             <EditText
                 android:id="@+id/phoneET"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/fullNameET"
+                android:layout_below="@id/profileIVShow"
                 android:textColor="@color/black"
                 android:textColorHint="#919090"
                 android:layout_marginStart="@dimen/_5mdp"

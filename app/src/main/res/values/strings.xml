@@ -125,4 +125,8 @@
     <string name="original_price_new">Original Price</string>
     <string name="buyer_name">Buyer Name</string>
     <string name="update_data">অ্যাপটি আপডেট করতে কোন ধরনের সমস্যা হলে প্রথমে uninstall করুন,তার পরে আবার install করুন।</string>
+    <string name="signin_seller_title">Seller হিসেবে সাইন ইন/সাইন আপ করুন</string>
+    <string name="signin_user_title">User হিসেবে সাইন ইন/সাইন আপ করুন</string>
+    <string name="select">Select</string>
+    <string name="user_sign_in">User Sign in</string>
 </resources>

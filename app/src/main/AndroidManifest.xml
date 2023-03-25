@@ -22,6 +22,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.KretaBikreta.NoActionBar">
         <activity
+            android:name=".GoogleSignInActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SellerLoginActivity"
+            android:exported="false" />
+        <activity
             android:name=".UpdateActivity"
             android:exported="false" />
         <activity
@@ -110,8 +116,10 @@
         <activity
             android:name=".LoginActivity"
             android:configChanges="orientation|screenSize|keyboardHidden|keyboard"
-            android:exported="false"
-            android:windowSoftInputMode="stateHidden" />
+            android:exported="true"
+            android:windowSoftInputMode="stateHidden">
+
+        </activity>
         <activity
             android:name=".EditeProfileUserActivity"
             android:configChanges="orientation|screenSize|keyboardHidden|keyboard"

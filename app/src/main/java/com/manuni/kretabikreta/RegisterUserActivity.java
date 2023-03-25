@@ -146,13 +146,7 @@ public class RegisterUserActivity extends AppCompatActivity implements LocationL
                 }
             }
         });
-        binding.registerAsSellerTV.setOnClickListener(view -> {
-            try {
-                startActivity(new Intent(RegisterUserActivity.this,TermsConditionActivity.class));
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        });
+
 
         binding.personImage.setOnClickListener(view -> {
             try {
@@ -169,7 +163,7 @@ public class RegisterUserActivity extends AppCompatActivity implements LocationL
                 e.printStackTrace();
             }
         });
-        binding.fullNameET.addTextChangedListener(new TextWatcher() {
+      /*  binding.fullNameET.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
@@ -196,7 +190,7 @@ public class RegisterUserActivity extends AppCompatActivity implements LocationL
             public void afterTextChanged(Editable editable) {
 
             }
-        });
+        });*/
 
         binding.emailEt.addTextChangedListener(new TextWatcher() {
             @Override
@@ -326,7 +320,7 @@ public class RegisterUserActivity extends AppCompatActivity implements LocationL
 
     private void inputDataToDatabaseAndStorage() {
 
-        if (!validateFullName() | !validatePhone() | !validateEmail() | !validatePassword() | !validateConfirmPassword() | !validateMatchPass()){
+        if (!validatePhone()){
             return;
         }
 
@@ -357,7 +351,12 @@ public class RegisterUserActivity extends AppCompatActivity implements LocationL
     private void createAccount(){
         dialogForAccount.setMessage("Creating Account...");
         dialogForAccount.show();
-        auth.createUserWithEmailAndPassword(binding.emailEt.getText().toString().trim(),binding.passwordET.getText().toString().trim()).addOnSuccessListener(authResult -> {
+
+       /* Intent signInIntent = mGoogleSignInClient.getSignInIntent();
+        startActivityForResult(signInIntent,RC_SIGN_IN);
+*/
+        saveDataInfoToDatabase();
+   /*     auth.createUserWithEmailAndPassword(binding.emailEt.getText().toString().trim(),binding.passwordET.getText().toString().trim()).addOnSuccessListener(authResult -> {
             try {
                 saveDataInfoToDatabase();
             } catch (Exception e) {
@@ -366,15 +365,14 @@ public class RegisterUserActivity extends AppCompatActivity implements LocationL
         }).addOnFailureListener(e -> {
             dialogForAccount.dismiss();
             Toast.makeText(RegisterUserActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
-        });
+        });*/
     }
 
-    private void saveDataInfoToDatabase() {
+ /*   private void saveDataInfoToDatabase() {
         dialogForAccount.setMessage("Wait a while...");
 
         if (imageUri == null){
             HashMap<String,Object> hashMap = new HashMap<>();
-            hashMap.put("fullName",""+binding.fullNameET.getText().toString().trim());
             hashMap.put("phoneNumber",""+binding.phoneET.getText().toString().trim());
             hashMap.put("countryName",""+binding.countryET.getText().toString().trim());
             hashMap.put("state",""+binding.stateET.getText().toString().trim());
@@ -409,7 +407,6 @@ public class RegisterUserActivity extends AppCompatActivity implements LocationL
 
                 if (uriTask.isSuccessful()){
                     HashMap<String,Object> hashMap = new HashMap<>();
-                    hashMap.put("fullName",""+binding.fullNameET.getText().toString().trim());
                     hashMap.put("phoneNumber",""+binding.phoneET.getText().toString().trim());
                     hashMap.put("countryName",""+binding.countryET.getText().toString().trim());
                     hashMap.put("state",""+binding.stateET.getText().toString().trim());
@@ -441,6 +438,115 @@ public class RegisterUserActivity extends AppCompatActivity implements LocationL
                 dialogForAccount.dismiss();
                 Toast.makeText(RegisterUserActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
             });
+
+        }
+
+
+    }*/
+
+    private void saveDataInfoToDatabase() {
+        dialogForAccount.setMessage("Saving Data to Database...");
+
+        if (imageUri == null){
+           /* HashMap<String,Object> hashMap = new HashMap<>();
+            hashMap.put("fullName",""+binding.fullNameET.getText().toString().trim());
+            hashMap.put("phoneNumber",""+binding.phoneET.getText().toString().trim());
+            hashMap.put("countryName",""+binding.countryET.getText().toString().trim());
+            hashMap.put("state",""+binding.stateET.getText().toString().trim());
+            hashMap.put("city",""+binding.cityET.getText().toString().trim());
+            hashMap.put("address",""+binding.completeAddressET.getText().toString().trim());
+           // hashMap.put("email",""+binding.emailEt.getText().toString().trim());
+           hashMap.put("uid",""+auth.getUid());
+            hashMap.put("latitude",""+latitude);
+            hashMap.put("longitude",""+longitude);
+            hashMap.put("accountType","User");
+            hashMap.put("online","true");
+            hashMap.put("timestamp",""+System.currentTimeMillis());
+            hashMap.put("profileImage","");*/
+
+            Intent intent = new Intent(RegisterUserActivity.this,GoogleSignInActivity.class);
+            intent.putExtra("uid",""+auth.getUid());
+            intent.putExtra("latitude",""+latitude);
+            intent.putExtra("longitude",""+longitude);
+            intent.putExtra("address",""+binding.completeAddressET.getText().toString().trim());
+            intent.putExtra("city",""+binding.cityET.getText().toString().trim());
+            intent.putExtra("state",""+binding.stateET.getText().toString().trim());
+            intent.putExtra("countryName",""+binding.countryET.getText().toString().trim());
+            intent.putExtra("phoneNumber",""+binding.phoneET.getText().toString().trim());
+            intent.putExtra("profileImage","");
+
+            startActivity(intent);
+
+
+          /*  reference.child(Objects.requireNonNull(auth.getUid())).setValue(hashMap).addOnSuccessListener(unused -> {
+                dialogForAccount.dismiss();
+                try {
+                    //startActivity(new Intent(RegisterUserActivity.this,MainUserActivity.class));
+                   // firebaseAuthWithGoogle(account);
+                    startActivity(new Intent(RegisterUserActivity.this,GoogleSignInActivity.class));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                finish();
+            }).addOnFailureListener(e -> dialogForAccount.dismiss());*/
+
+        }else {
+      /*      String filePathAndName = "profile_images/"+""+auth.getUid();
+            storageReference.child(filePathAndName).putFile(imageUri).addOnSuccessListener(taskSnapshot -> {
+                Task<Uri> uriTask = taskSnapshot.getStorage().getDownloadUrl();
+
+                while (!uriTask.isSuccessful());
+                Uri downloadUrl = uriTask.getResult();
+
+                if (uriTask.isSuccessful()){
+                    HashMap<String,Object> hashMap = new HashMap<>();
+                    hashMap.put("fullName",""+binding.fullNameET.getText().toString().trim());
+                    hashMap.put("phoneNumber",""+binding.phoneET.getText().toString().trim());
+                    hashMap.put("countryName",""+binding.countryET.getText().toString().trim());
+                    hashMap.put("state",""+binding.stateET.getText().toString().trim());
+                    hashMap.put("city",""+binding.cityET.getText().toString().trim());
+                    hashMap.put("address",""+binding.completeAddressET.getText().toString().trim());
+                  //  hashMap.put("email",""+binding.emailEt.getText().toString().trim());
+//            hashMap.put("password",""+binding.passwordET.getText().toString().trim());
+//            hashMap.put("confirmPassword",""+binding.confirmPasswordET.getText().toString().trim());
+                   hashMap.put("uid",""+auth.getUid());
+                    hashMap.put("latitude",""+latitude);
+                    hashMap.put("longitude",""+longitude);
+                    hashMap.put("accountType","User");
+                    hashMap.put("online","true");
+                    hashMap.put("timestamp",""+System.currentTimeMillis());
+                    hashMap.put("profileImage",""+downloadUrl);
+
+                    reference.child(Objects.requireNonNull(auth.getUid())).setValue(hashMap).addOnSuccessListener(unused -> {
+                        dialogForAccount.dismiss();
+                        try {
+                           // startActivity(new Intent(RegisterUserActivity.this,MainUserActivity.class));
+                           // firebaseAuthWithGoogle(account);
+                            startActivity(new Intent(RegisterUserActivity.this,GoogleSignInActivity.class));
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                        finish();
+                    }).addOnFailureListener(e -> dialogForAccount.dismiss());
+                }
+
+            }).addOnFailureListener(e -> {
+                dialogForAccount.dismiss();
+                Toast.makeText(RegisterUserActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+            });*/
+
+            Intent intentMy = new Intent(RegisterUserActivity.this,GoogleSignInActivity.class);
+            intentMy.putExtra("uid",""+auth.getUid());
+            intentMy.putExtra("latitude",""+latitude);
+            intentMy.putExtra("longitude",""+longitude);
+            intentMy.putExtra("address",""+binding.completeAddressET.getText().toString().trim());
+            intentMy.putExtra("city",""+binding.cityET.getText().toString().trim());
+            intentMy.putExtra("state",""+binding.stateET.getText().toString().trim());
+            intentMy.putExtra("countryName",""+binding.countryET.getText().toString().trim());
+            intentMy.putExtra("phoneNumber",""+binding.phoneET.getText().toString().trim());
+            intentMy.putExtra("profileImage",""+imageUri);
+
+            startActivity(intentMy);
 
         }
 
@@ -571,12 +677,12 @@ public class RegisterUserActivity extends AppCompatActivity implements LocationL
         Toast.makeText(this, "Please enable location service.", Toast.LENGTH_SHORT).show();
     }
 
-    private boolean validateFullName(){
+   /* private boolean validateFullName(){
         fullName = binding.fullNameET.getText().toString().trim();
 
-      /*  Pattern pattern = Pattern.compile("^[A-Za-z\\s]+$");//allow only space and alphabets
+      *//*  Pattern pattern = Pattern.compile("^[A-Za-z\\s]+$");//allow only space and alphabets
         Matcher matcher = pattern.matcher(fullName);
-        boolean isNameContains = matcher.find();*/
+        boolean isNameContains = matcher.find();*//*
 
         if (fullName.isEmpty()){
             binding.textInputFullName.setError("Field can't be empty.");
@@ -593,7 +699,7 @@ public class RegisterUserActivity extends AppCompatActivity implements LocationL
             binding.textInputFullName.setHelperTextColor(ColorStateList.valueOf(getResources().getColor(R.color.colorGreen)));
             return true;
         }
-    }
+    }*/
     private boolean validatePhone(){
         phoneNumber = binding.phoneET.getText().toString().trim();
         if (phoneNumber.isEmpty()){
